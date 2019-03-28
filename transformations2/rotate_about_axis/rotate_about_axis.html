@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- Example LearnWebGL HTML file, by Wayne Brown, Fall 2015 -->
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="Learn, WebGL, tutorial, example">
+  <meta name="description" content="WebGL tutorials - an example of rotating about an axis">
+  <meta name="author" content="Wayne Brown">
+  <title>WebGL Example</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/webglcode.css" />
+</head>
+
+<body>
+<p>An example of rotation about an axis. (You can change the axis using the controls below.)
+Sometimes your eyes will play tricks on you and the rotation will look wrong.
+To verify that the model is indeed rotating about the axis, rotate your
+view so that you are looking straight down the axis of rotation and then vary
+the rotation angle.</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W4_canvas" class="canvas3D">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<!-- An HTML control element that can be used to modify the rendering behavior -->
+<div>Set the rotation angle about the axis:</div>
+-180 <input type="range" id="W4_angle" min="-180" max="180" value="0.0" step="1" style="width:250px"> 180 angle : <span>0.0</span> <br><br>
+<div>Change the axis of rotation by rotating it in various directions: (The axis of rotation starts from the x axis.)</div>
+0.0 <input type="range" id="W4_vecx_angle" min="0.0" max="360.0" value="0.0" step="0.01" style="width:250px"> 360.0 rotation axis x degrees: <span>0.00</span> <br>
+0.0 <input type="range" id="W4_vecy_angle" min="0.0" max="360.0" value="0.0" step="0.01" style="width:250px"> 360.0 rotation axis y degrees: <span>0.00</span> <br>
+0.0 <input type="range" id="W4_vecz_angle" min="0.0" max="360.0" value="0.0" step="0.01" style="width:250px"> 360.0 rotation axis z degrees: <span>0.00</span> <br>
+<span id="axis_text"><strong>axis_of_rotation</strong>: <1.0, 0.0, 0.0></span><br><br>
+
+<div>Move the model away from the origin:</div>
+-1.0 <input type="range" id="W4_xtranslate" min="-1.0" max="1.0" value="0.0" step="0.01" style="width:250px"> 1.0 tx : <span>0.00</span> <br>
+-1.0 <input type="range" id="W4_ytranslate" min="-1.0" max="1.0" value="0.0" step="0.01" style="width:250px"> 1.0 ty : <span>0.00</span> <br>
+-1.0 <input type="range" id="W4_ztranslate" min="-1.0" max="1.0" value="0.0" step="0.01" style="width:250px"> 1.0 tz : <span>0.00</span> <br>
+<button id="W4_reset">Reset</button><br>
+<p>Notice that when the model is centered at the origin (or anywhere along
+the axis of rotation) the model changes orientation but does not change location.
+If you move the model away from the origin, both its orientation and its
+location change.
+</p>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../../lib/learn_webgl_02.js"></script>
+<script src="../../lib/learn_webgl_console_messages.js"></script>
+<script src="../../lib/learn_webgl_point4.js"></script>
+<script src="../../lib/learn_webgl_vector3.js"></script>
+<script src="../../lib/learn_webgl_matrix.js"></script>
+<script src="../../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../../lib/learn_webgl_model_render_05.js"></script>
+<script src="./rotate_about_axis_render.js"></script>
+<script src="./rotate_about_axis_events.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var shaders = ["../../lib/shaders/shader05.vert", "../../lib/shaders/shader05.frag"];
+  var models = ["../../lib/models/XYZ_Blocks.obj", "../../lib/models/Axes3.obj", "../../lib/models/OneVector.obj"];
+  var controls = ["W4_reset", "W4_axisx", "W4_axisy", "W4_axisz", "W4_xtranslate", "W4_ytranslate", "W4_ztranslate", "W4_angle"];
+  var my_program = new Learn_webgl("W4_canvas", "SceneRotateAboutAxis", models, shaders, controls);
+</script>
+
+</body>
+</html>

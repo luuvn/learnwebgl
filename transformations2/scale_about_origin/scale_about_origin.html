@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- Example LearnWebGL HTML file, by Wayne Brown, Fall 2015 -->
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="Learn, WebGL, tutorial, example">
+  <meta name="description" content="WebGL tutorials - an example">
+  <meta name="author" content="Wayne Brown">
+  <title>WebGL Example</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/webglcode.css" />
+</head>
+
+<body>
+<p>An example of <strong>uniform scaling</strong> where the object is centered about the origin.</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W1_canvas" class="canvas3D">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<!-- An HTML control element that can be used to modify the rendering behavior -->
+<input type="checkbox" id="W1_animate" checked> Animate <br>
+Scale <span>1.00</span> : 0.3 <input type="range" id="W1_scale" min="0.3" max="2.0" value="1.0" step="0.01" style="width:250px"> 2.0 <br>
+<button id="W1_reset">Reset</button><br>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../../lib/learn_webgl_02.js"></script>
+<script src="../../lib/learn_webgl_console_messages.js"></script>
+<script src="../../lib/learn_webgl_point4.js"></script>
+<script src="../../lib/learn_webgl_vector3.js"></script>
+<script src="../../lib/learn_webgl_matrix.js"></script>
+<script src="../../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../../lib/learn_webgl_model_render_05.js"></script>
+<script src="./scale_about_origin_render.js"></script>
+<script src="./scale_about_origin_events.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var shaders = ["../../lib/shaders/shader05.vert", "../../lib/shaders/shader05.frag"];
+  var models = ["../../lib/models/XYZ_Blocks.obj"];
+  var controls = ["W1_animate", "W1_reset", "W1_scale"];
+  var my_program = new Learn_webgl("W1_canvas", "ScaleAboutOriginRender", models, shaders, controls);
+</script>
+
+</body>
+</html>
