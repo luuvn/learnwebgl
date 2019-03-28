@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.6 - A Matrix Code Library - Learn_webgl_matrix &mdash; LearnWebGL</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrix.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglcode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglcodedemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="../_static/matrix.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglcode.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="LearnWebGL" href="../index.html" />
+    <link rel="next" title="6.7 - Using Learn_webgl_matrix - A Robot Arm Base" href="transformations_example1.html" />
+    <link rel="prev" title="6.5 - Transformation Matrices" href="transformations_matrices.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'LearnWebGL';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Learn WebGL</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAcrkqh1hn3lYqIpfXxNqe1T82EhXzCJGy1yMAmklpyZshyMkfDGe1Bhx+iwyGeoYRTTyphFmP+9M3NyO0+Q5XdHxgZPx/zYjjBxlZHgEV6jhE8bN2fHkkPf0VHfz0a0QQylQOPlKiOTZV7B37Jpk6yM47oVZ1tG/KNm0NkfmB76DELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIi0GmFfOlcjuAgZBbYOo9UO+CpMQa+PYqwsUmUnJvXIImeMeNI3KVTUx5Cfk9gNMo3WzPeiB5IqZo9nRAQ0mf1qL2ecLeB5tidM+lgBUhOxfj3/FecpnVFa0263gp4g+PLw8jzhvVRdUon1K3SeO1Rzh23fIRKwnrD6btt73uwtj0sl3tGd8qz+6GIcwPDdRk9VcUffiBJT/ZagKgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMzExMDMxMzQxMzFaMCMGCSqGSIb3DQEJBDEWBBRDJF8w+zsMr7FSk+pwinB5f5D4rzANBgkqhkiG9w0BAQEFAASBgHw1LMHpkpaqHIvDGdFE0eG+2mZlmMnUeDCBhQlbc7QMzFQYKTV94NfaebBO4PmNdADe1rq4WidSRZZbE7CzkX9IGENYnBTWY0hb2l0lGdGrJdGeWyV3ekg9WVaFMMumrekds96h3Cx7dGz2kWDzIai2iEXE/qoE+xpkyXAYZNV3-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <!-- <li><a href='/runestone/static/LearnWebGL/genindex.html'>Book Index</a></li> -->
+            <li><a href='/LearnWebGL/genindex.html'>Book Index</a></li>
+            <!--
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            -->
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> -- correct link populated by addNavbarLoginLink()
+          </ul>
+        </li>
+        -->
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/LearnWebGL/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        -->
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">6.6 - A Matrix Code Library - <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt></a><ul>
+<li><a class="reference internal" href="#webgl-transformation-matrices">WebGL Transformation Matrices</a></li>
+<li><a class="reference internal" href="#design-decisions-for-a-matrix-library">Design Decisions for a Matrix Library</a></li>
+<li><a class="reference internal" href="#the-learn-webgl-matrix-class">The Learn_webgl_matrix Class</a></li>
+<li><a class="reference internal" href="#the-learn-webgl-matrix-code">The Learn_webgl_matrix Code</a></li>
+<li><a class="reference internal" href="#html-code-to-use-learn-webgl-matrix">HTML Code To Use Learn_webgl_matrix</a></li>
+<li><a class="reference internal" href="#glossary">Glossary</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 6.5 - Transformation Matrices" data-toggle="tooltip">
+    <a href="transformations_matrices.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 6.7 - Using <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> - A Robot Arm Base' data-toggle="tooltip" >
+    <a href="transformations_example1.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="a-matrix-code-library-learn-webgl-matrix">
+<h1>6.6 - A Matrix Code Library - <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt><a class="headerlink" href="#a-matrix-code-library-learn-webgl-matrix" title="Permalink to this headline">¶</a></h1>
+<p>Fundamental to all 3D computer graphics is the 4x4 matrix transform. In
+the original OpenGL API, all basic transformations were implemented for
+you in the library&#8217;s code. All you had
+to do was call the correct function in the correct order. WebGL was
+implemented for low power mobile devices with limited CPU and GPU functionality.
+Transformation matrix functionality was <strong>not</strong> included in the WebGL API.
+Therefore, you have to implement your own matrix operations in JavaScript.
+But it doesn&#8217;t make sense for individual programmers to &#8220;re-invent the wheel&#8221;.
+This lesson presents you with a JavaScript matrix library and explains how
+to use it.</p>
+<div class="section" id="webgl-transformation-matrices">
+<h2>WebGL Transformation Matrices<a class="headerlink" href="#webgl-transformation-matrices" title="Permalink to this headline">¶</a></h2>
+<p>A WebGL, 4x4, transformation matrix is a 1D array of type <tt class="code docutils literal"><span class="pre">Float32Array</span></tt>
+which contains 16 floating point values. The values represent a 2D array and
+are stored in column-major order. (Back in the 1960&#8217;s, Fortran stored 2-dimensional
+data in column-major order. That convention has propagated to various system still
+in use today, including OpenGL. Most modern programming languages use row-major order.)</p>
+<p>The 4x4 transformation matrix:</p>
+<!-- matrixeq start -->
+<div id='M4206' class='matrixeq_container'>
+<span id="M4206_0" class="matrixtable"><span class="vector"><span>0<br /></span><span>4<br /></span><span>8<br /></span><span>12<br /></span></span><span class="vector"><span>1<br /></span><span>5<br /></span><span>9<br /></span><span>13<br /></span></span><span class="vector"><span>2<br /></span><span>6<br /></span><span>10<br /></span><span>14<br /></span></span><span class="vector"><span>3<br /></span><span>7<br /></span><span>11<br /></span><span>15<br /></span></span></span><span class='label' style='line-height:460%'> Eq1</span></div>
+<!-- end of matrixeq --><p>would be created in JavaScript code like this:</p>
+<div class="highlight-JavaScript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Float32Array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">15</span><span class="p">]);</span>
+<span class="c1">// Or</span>
+<span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Float32Array</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+<span class="nx">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">1</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span> <span class="mi">8</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">2</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nx">m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">4</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">5</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span> <span class="mi">9</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">6</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="nx">m</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">8</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">9</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="nx">m</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>  <span class="nx">m</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In most cases the 2<sup>nd</sup> example above is used because it is easier to
+debug the code if you can visualize the data values as a 2D array.</p>
+<p>Note: If you re-format the matrix library code you will lose the &#8220;multiple
+statements per line&#8221; formatting which helps to visualize the 4x4 matrices.
+It is recommended that you do <strong>not</strong> re-format this code file.</p>
+</div>
+<div class="section" id="design-decisions-for-a-matrix-library">
+<h2>Design Decisions for a Matrix Library<a class="headerlink" href="#design-decisions-for-a-matrix-library" title="Permalink to this headline">¶</a></h2>
+<p>A typical <em>class</em> definition defines a set of data and a set of functions
+that act on that data. One of the important ideas behind <em>classes</em> is the
+encapsulation and protection of a set of data values inside an instance of the class.
+We don&#8217;t really need data protection for our matrix library. What we need
+is encapsulation of the functionality of matrix operations so that we can minimize the
+creation and deletion of scratch arrays that are needed for matrix processing.
+Consider that an animation requires the rendering of a scene at least 30 times
+per second. If you are constantly creating new object instances
+every time you render, you will be creating a lot of
+objects. JavaScript does dynamic memory garbage collection, so many programmers
+simply ignore memory issues. But if you can minimize the creation of
+new objects for each rendering, your animations have the potential to run
+more smoothly.</p>
+</div>
+<div class="section" id="the-learn-webgl-matrix-class">
+<h2>The Learn_webgl_matrix Class<a class="headerlink" href="#the-learn-webgl-matrix-class" title="Permalink to this headline">¶</a></h2>
+<p>A class called <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> is defined in a file named
+<a class="reference external" href="../lib/learn_webgl_matrix.js">Learn_webgl_matrix.js</a>. It encapsulates the matrix functionality we
+need to produce WebGL renderings. A <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> object does
+not store a matrix. It encapsulates matrix functionality and the scratch arrays
+needed for that functionality. And, by separating matrix functionality from
+matrix data, the syntax of the code is simplified.</p>
+<p>You will create one instance of the library
+and use it for your entire program. The library contains functions that:</p>
+<ul class="simple">
+<li>create transforms,</li>
+<li>set the values of a specific type of transform, and</li>
+<li>perform matrix operations.</li>
+</ul>
+<p>A transform is stored as a <tt class="code docutils literal"><span class="pre">Float32Array</span></tt>. Four functions in an
+<tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> object create and return new transforms and their
+names all start with <tt class="code docutils literal"><span class="pre">create</span></tt>. These functions should not be called in your
+rendering code for every animation frame. They should be called once in your
+setup code to create any transforms you need during rendering. The four
+functions that create a new matrix transform are:</p>
+<ul class="simple">
+<li><tt class="code docutils literal"><span class="pre">create()</span></tt>, which creates and returns a new 4x4 transformation matrix.</li>
+<li><tt class="code docutils literal"><span class="pre">createOrthographic()</span></tt>, which creates a new orthographic projection transformation matrix.</li>
+<li><tt class="code docutils literal"><span class="pre">createPerspective()</span></tt>, which creates a new perspective projection transformation matrix.</li>
+<li><tt class="code docutils literal"><span class="pre">createFrustum()</span></tt>, which creates a new perspective projection transformation matrix.</li>
+</ul>
+<p>Functions that set the values of a transformation matrix must send a
+transformation matrix as the first parameter. For example:</p>
+<ul class="simple">
+<li><tt class="code docutils literal"><span class="pre">scale(M,</span> <span class="pre">sx,</span> <span class="pre">sy,</span> <span class="pre">sz)</span></tt> sets <tt class="code docutils literal"><span class="pre">M</span></tt> to a scale transform.</li>
+<li><tt class="code docutils literal"><span class="pre">translate(M,</span> <span class="pre">tx,</span> <span class="pre">ty,</span> <span class="pre">tz)</span></tt> sets <tt class="code docutils literal"><span class="pre">M</span></tt> to a translation transform.</li>
+<li><tt class="code docutils literal"><span class="pre">rotate(M,</span> <span class="pre">angle,</span> <span class="pre">x_axis,</span> <span class="pre">y_axis,</span> <span class="pre">z_axis)</span></tt> sets <tt class="code docutils literal"><span class="pre">M</span></tt> to a rotation transform.</li>
+</ul>
+<p>Functions that perform matrix calculations change the value of their first parameter,
+while leaving all of the other parameters unchanged. The parameters are ordered
+similar to assignment statements which always change their left-hand side variable,
+but leave all value on the right-hand-side of an assignment statement unchanged.
+For example:</p>
+<ul class="simple">
+<li><tt class="code docutils literal"><span class="pre">multiply(R,</span> <span class="pre">A,</span> <span class="pre">B)</span></tt> sets <tt class="code docutils literal"><span class="pre">R</span></tt> to the product of A times B. (<tt class="code docutils literal"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">A*B</span></tt>)</li>
+</ul>
+<p>The function <tt class="code docutils literal"><span class="pre">multiplySeries()</span></tt> will
+multiply any number of matrices together to produce a single transformation
+matrix. It uses <em>variable arguments</em> and will accept as many arguments as you send it.
+For example, <tt class="code docutils literal"><span class="pre">m.multiplySeries(R,A,B,C,D,E)</span></tt> will calculate the matrix product
+of <tt class="code docutils literal"><span class="pre">A*B*C*D*E</span></tt> and store the result in <tt class="code docutils literal"><span class="pre">R</span></tt>. In equation format, it performs
+<tt class="code docutils literal"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">A*B*C*D*E;</span></tt>. The order of the multiplications is critical. If the
+transform <tt class="code docutils literal"><span class="pre">R</span></tt> is applied to a set of vertices, the effect of <tt class="code docutils literal"><span class="pre">R</span></tt>
+would be that</p>
+<ol class="arabic simple">
+<li>transform <tt class="code docutils literal"><span class="pre">E</span></tt> was applied to a vertex,</li>
+<li>then transform <tt class="code docutils literal"><span class="pre">D</span></tt> was applied to the transformed vertex,</li>
+<li>then transform <tt class="code docutils literal"><span class="pre">C</span></tt> was applied to the transformed vertex,</li>
+<li>then transform <tt class="code docutils literal"><span class="pre">B</span></tt> was applied to the transformed vertex, and</li>
+<li>finally transform <tt class="code docutils literal"><span class="pre">A</span></tt> was applied to the transformed vertex.</li>
+</ol>
+<p>When you create a single transform from multiple transforms, you must always
+order the transformations from <strong>right to left</strong>.</p>
+</div>
+<div class="section" id="the-learn-webgl-matrix-code">
+<h2>The Learn_webgl_matrix Code<a class="headerlink" href="#the-learn-webgl-matrix-code" title="Permalink to this headline">¶</a></h2>
+<p>The demo below displays the <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> class. Review the code
+to get familiar with its matrix functionality. The implementation details of
+many of the functions will be discussed in future lessons. The code below
+is not editable. You might want to modify the code later, but for right now
+you just need to learn how to use the code.</p>
+<!-- webgl start -->
+  <script>
+    var W1_directive = new Webgl_directive( 'W1' );
+  </script>
+  <div class='webgl_container' id='W1_webgl_container'>
+<div class='webgl_cmds' id='W1_webgl_cmds'>
+<button class='btn btn-success' id='W1_runb' onclick='W1_program.reload();'>Re-start</button>
+Show:
+<input type='checkbox' id='W1_show_code' onclick='W1_directive.show_webgl("W1_show_code",1);' checked='checked' /> Code
+<input type='checkbox' id='W1_show_canvas' onclick='W1_directive.show_webgl("W1_show_canvas",2);' /> Canvas
+<input type='checkbox' id='W1_show_info' onclick='W1_directive.show_webgl("W1_show_info",3);'/> Run Info
+<button class='btn btn-default' id='W1_saveall' onclick='W1_program.downloadAll();'>Download All</button>
+</div>
+<div class='webgl_row2' id='W1_webgl_row2'>
+<div class='webgl_editors' id='W1_webgl_editors'>
+<ul class='webgl_nav_tabs' id='W1_tab'>
+<li>
+    <a data-toggle='tab' href='#W1_learn_webgl_matrix_js'><span>learn_webgl_matrix.js</span></a>
+</li>
+</ul><div style='width:100%; position:relative;'>
+<div class="webgl_code"><div class='webgl_tab_content' id='W1_learn_webgl_matrix_js'>
+<textarea id="W1_learn_webgl_matrix_js_textarea" class="webgl_tabbed_editor">
+/**
+ * Learn_webgl_matrix.js, By Wayne Brown, Spring 2015
+ *
+ * Learn_webgl_matrix is a set of functions that perform standard operations
+ * on 4x4 transformation matrices.
+ *
+ * The 4x4 matrices are stored in column-major order using an array of 32-bit
+ * floating point numbers, which is the format required by WebGL programs.
+ *
+ * The functions do not create new objects because in real-time graphics,
+ * creating new objects slows things down.
+ *
+ * Function parameters are ordered in the same order an equivalent
+ * assignment statements. For example, R = A*B, has parameters (R, A, B).
+ * All matrix parameters use capital letters.
+ *
+ * The functions are defined inside an object to prevent pollution of
+ * JavaScript's global address space. The functions contain no validation
+ * of parameters, which makes them more efficient at run-time.
+ */
+
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 C. Wayne Brown
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+// Do not perform code-formatting on this code. It destroys the matrix formatting.
+//@formatter:off
+
+"use strict";
+
+/**
+ * @constructor Create an instance of the Learn_webgl_matrix class
+ */
+var Learn_webgl_matrix = function () {
+
+  var self = this;
+
+  /** -----------------------------------------------------------------
+   * @return Float32Array returns an uninitialized matrix.
+   */
+  self.create = function () {
+    return new Float32Array(16);
+  };
+
+  // Temporary matrices and vectors for calculations. They are reused to
+  // prevent new objects from being constantly re-created and then garbage
+  // collected.
+  var T1, T2, V, v3, P, p4, axis_of_rotation, u, v, n, center, eye, up;
+
+  T1 = self.create();
+  T2 = self.create();
+  V = new Learn_webgl_vector3();
+  v3 = V.create();
+  P = new Learn_webgl_point4();
+  p4 = P.create();
+  axis_of_rotation = V.create();
+  u = V.create();
+  v = V.create();
+  n = V.create();
+  center = V.create();
+  eye = V.create();
+  up = V.create();
+
+  /** -----------------------------------------------------------------
+   * M = I (identity Matrix)
+   */
+  self.setIdentity = function (M) {
+    M[0] = 1;  M[4] = 0;  M[8] = 0;  M[12] = 0;
+    M[1] = 0;  M[5] = 1;  M[9] = 0;  M[13] = 0;
+    M[2] = 0;  M[6] = 0;  M[10] = 1; M[14] = 0;
+    M[3] = 0;  M[7] = 0;  M[11] = 0; M[15] = 1;
+  };
+
+  /** -----------------------------------------------------------------
+   * @return number Convert the input angle in degrees to radians
+   */
+  self.toRadians = function (angleInDegrees) {
+    return angleInDegrees * 0.017453292519943295;  // Math.PI / 180
+  };
+
+  /** -----------------------------------------------------------------
+   * @return number Convert the input angle in radians to degrees
+   */
+  self.toDegrees = function (angleInRadians) {
+    return angleInRadians * 57.29577951308232;  // 180 / Math.PI
+  };
+
+  /** -----------------------------------------------------------------
+   * To = From (an element-by-element copy)
+   * @return To (a 16 element Float32Array)
+   */
+  self.copy = function (To, From) {
+    var j;
+    for (j = 0; j < 16; j += 1) {
+      To[j] = From[j];
+    }
+    return To;
+  };
+
+  /** -----------------------------------------------------------------
+   * R = A * B (Matrix Multiplication); NOTE: order matters!
+   */
+  self.multiply = function (R, A, B) {
+
+    // A and B can't change during the operation.
+    // If R is the same as A and/or B, Make copies of A and B
+    // The comparison must use ==, not ===. We are comparing for identical
+    // objects, not if two objects might have the same values.
+    if (A == R) {
+      A = self.copy(T1, A);
+    }
+    if (B == R) {
+      B = self.copy(T2, B);
+    }
+
+    R[0]  = A[0] * B[0]  + A[4] * B[1]  + A[8]  * B[2]  + A[12] * B[3];
+    R[1]  = A[1] * B[0]  + A[5] * B[1]  + A[9]  * B[2]  + A[13] * B[3];
+    R[2]  = A[2] * B[0]  + A[6] * B[1]  + A[10] * B[2]  + A[14] * B[3];
+    R[3]  = A[3] * B[0]  + A[7] * B[1]  + A[11] * B[2]  + A[15] * B[3];
+
+    R[4]  = A[0] * B[4]  + A[4] * B[5]  + A[8]  * B[6]  + A[12] * B[7];
+    R[5]  = A[1] * B[4]  + A[5] * B[5]  + A[9]  * B[6]  + A[13] * B[7];
+    R[6]  = A[2] * B[4]  + A[6] * B[5]  + A[10] * B[6]  + A[14] * B[7];
+    R[7]  = A[3] * B[4]  + A[7] * B[5]  + A[11] * B[6]  + A[15] * B[7];
+
+    R[8]  = A[0] * B[8]  + A[4] * B[9]  + A[8]  * B[10] + A[12] * B[11];
+    R[9]  = A[1] * B[8]  + A[5] * B[9]  + A[9]  * B[10] + A[13] * B[11];
+    R[10] = A[2] * B[8]  + A[6] * B[9]  + A[10] * B[10] + A[14] * B[11];
+    R[11] = A[3] * B[8]  + A[7] * B[9]  + A[11] * B[10] + A[15] * B[11];
+
+    R[12] = A[0] * B[12] + A[4] * B[13] + A[8]  * B[14] + A[12] * B[15];
+    R[13] = A[1] * B[12] + A[5] * B[13] + A[9]  * B[14] + A[13] * B[15];
+    R[14] = A[2] * B[12] + A[6] * B[13] + A[10] * B[14] + A[14] * B[15];
+    R[15] = A[3] * B[12] + A[7] * B[13] + A[11] * B[14] + A[15] * B[15];
+  };
+
+  /** -----------------------------------------------------------------
+   * R = A * B * C * D ... (Matrix Multiplication); NOTE: order matters!
+   */
+  self.multiplySeries = function () {
+    if (arguments.length >= 3) {
+      self.multiply(arguments[0], arguments[1], arguments[2]);
+      var j;
+      for (j = 3; j < arguments.length; j += 1) {
+        self.multiply(arguments[0], arguments[0], arguments[j]);
+      }
+    }
+  };
+
+  /** -----------------------------------------------------------------
+   * r = M * v (M is a 4x4 matrix, v is a 3-component vector)
+   */
+  self.multiplyV3 = function (r, M, v) {
+
+    // v can't change during the operation. If r and v are the same, make a copy of v
+    if (r == v) {
+      v = V.copy(v3, v);
+    }
+
+    r[0] = M[0] * v[0] + M[4] * v[1] + M[8]  * v[2];
+    r[1] = M[1] * v[0] + M[5] * v[1] + M[9]  * v[2];
+    r[2] = M[2] * v[0] + M[6] * v[1] + M[10] * v[2];
+  };
+
+  /** -----------------------------------------------------------------
+   * r = M * p (M is a 4x4 matrix, p is a 4-component point)
+   */
+  self.multiplyP4 = function (r, M, p) {
+
+    // p can't change during the operation, so make a copy of p.
+    P.copy(p4, p);
+
+    r[0] = M[0] * p4[0] + M[4] * p4[1] + M[8]  * p4[2] + M[12] * p4[3];
+    r[1] = M[1] * p4[0] + M[5] * p4[1] + M[9]  * p4[2] + M[13] * p4[3];
+    r[2] = M[2] * p4[0] + M[6] * p4[1] + M[10] * p4[2] + M[14] * p4[3];
+    r[3] = M[3] * p4[0] + M[7] * p4[1] + M[11] * p4[2] + M[15] * p4[3];
+  };
+
+  /** -----------------------------------------------------------------
+   * Console.log(name, M)
+   */
+  self.print = function (name, M) {
+    var fieldSize = 11;
+    var numText;
+    var row, offset, rowText, number;
+    console.log(name + ":");
+    for (row = 0; row < 4; row += 1) {
+      rowText = "";
+      for (offset = 0; offset < 16; offset += 4) {
+        number = Number(M[row + offset]);
+        numText = number.toFixed(4);
+        rowText += new Array(fieldSize - numText.length).join(" ") + numText;
+      }
+      console.log(rowText);
+    }
+  };
+
+  /** -----------------------------------------------------------------
+   * M = M' (transpose the matrix)
+   */
+  self.transpose = function (M) {
+    var t;
+
+    // The diagonal values don't move; 6 non-diagonal elements are swapped.
+    t = M[1];  M[1]  = M[4];  M[4]  = t;
+    t = M[2];  M[2]  = M[8];  M[8]  = t;
+    t = M[3];  M[3]  = M[12]; M[12] = t;
+    t = M[6];  M[6]  = M[9];  M[9]  = t;
+    t = M[7];  M[7]  = M[13]; M[13] = t;
+    t = M[11]; M[11] = M[14]; M[14] = t;
+  };
+
+  /** -----------------------------------------------------------------
+   * Inv = M(-1) (Inv is set to the inverse of M)
+   *
+   */
+  self.inverse = function (Inv, M) {
+    /* Structure of matrix
+
+         0   1   2   3
+        ______________
+     0 | 0   4   8  12
+     1 | 1   5   9  13
+     2 | 2   6  10  14
+     3 | 3   7  11  15
+    */
+
+    // Factored out common terms
+    var t9_14_13_10 = M[9] * M[14] - M[13] * M[10];
+    var t13_6_5_14  = M[13] * M[6] - M[5] * M[14];
+    var t5_10_9_6   = M[5] * M[10] - M[9] * M[6];
+    var t12_10_8_14 = M[12] * M[10] - M[8] * M[14];
+    var t4_14_12_6  = M[4] * M[14] - M[12] * M[6];
+    var t8_6_4_10   = M[8] * M[6] - M[4] * M[10];
+    var t8_13_12_9  = M[8] * M[13] - M[12] * M[9];
+    var t12_5_4_13  = M[12] * M[5] - M[4] * M[13];
+    var t4_9_8_5    = M[4] * M[9] - M[8] * M[5];
+    var t1_14_13_2  = M[1] * M[14] - M[13] * M[2];
+    var t9_2_1_10   = M[9] * M[2] - M[1] * M[10];
+    var t12_2_0_14  = M[12] * M[2] - M[0] * M[14];
+    var t0_10_8_2   = M[0] * M[10] - M[8] * M[2];
+    var t0_13_12_1  = M[0] * M[13] - M[12] * M[1];
+    var t8_1_0_9    = M[8] * M[1] - M[0] * M[9];
+    var t1_6_5_2    = M[1] * M[6] - M[5] * M[2];
+    var t4_2_0_6    = M[4] * M[2] - M[0] * M[6];
+    var t0_5_4_1    = M[0] * M[5] - M[4] * M[1];
+
+    Inv[0] = M[7] * t9_14_13_10 + M[11] * t13_6_5_14 + M[15] * t5_10_9_6;
+    Inv[4] = M[7] * t12_10_8_14 + M[11] * t4_14_12_6 + M[15] * t8_6_4_10;
+    Inv[8] = M[7] * t8_13_12_9 + M[11] * t12_5_4_13 + M[15] * t4_9_8_5;
+    Inv[12] = M[6] * -t8_13_12_9 + M[10] * -t12_5_4_13 + M[14] * -t4_9_8_5;
+    Inv[1] = M[3] * -t9_14_13_10 + M[11] * t1_14_13_2 + M[15] * t9_2_1_10;
+    Inv[5] = M[3] * -t12_10_8_14 + M[11] * t12_2_0_14 + M[15] * t0_10_8_2;
+    Inv[9] = M[3] * -t8_13_12_9 + M[11] * t0_13_12_1 + M[15] * t8_1_0_9;
+    Inv[13] = M[2] * t8_13_12_9 + M[10] * -t0_13_12_1 + M[14] * -t8_1_0_9;
+    Inv[2] = M[3] * -t13_6_5_14 + M[7] * -t1_14_13_2 + M[15] * t1_6_5_2;
+    Inv[6] = M[3] * -t4_14_12_6 + M[7] * -t12_2_0_14 + M[15] * t4_2_0_6;
+    Inv[10] = M[3] * -t12_5_4_13 + M[7] * -t0_13_12_1 + M[15] * t0_5_4_1;
+    Inv[14] = M[2] * t12_5_4_13 + M[6] * t0_13_12_1 + M[14] * -t0_5_4_1;
+    Inv[3] = M[3] * -t5_10_9_6 + M[7] * -t9_2_1_10 + M[11] * -t1_6_5_2;
+    Inv[7] = M[3] * -t8_6_4_10 + M[7] * -t0_10_8_2 + M[11] * -t4_2_0_6;
+    Inv[11] = M[3] * -t4_9_8_5 + M[7] * -t8_1_0_9 + M[11] * -t0_5_4_1;
+    Inv[15] = M[2] * t4_9_8_5 + M[6] * t8_1_0_9 + M[10] * t0_5_4_1;
+
+    var det;
+    det =
+        M[3]  * (M[6] * -t8_13_12_9 + M[10] * -t12_5_4_13 + M[14] * -t4_9_8_5) +
+        M[7]  * (M[2] * t8_13_12_9  + M[10] * -t0_13_12_1 + M[14] * -t8_1_0_9) +
+        M[11] * (M[2] * t12_5_4_13  + M[6] * t0_13_12_1   + M[14] * -t0_5_4_1) +
+        M[15] * (M[2] * t4_9_8_5    + M[6] * t8_1_0_9     + M[10] * t0_5_4_1);
+
+    if (det !== 0) {
+      var j;
+      var scale = 1 / det;
+      for (j = 0; j < 16; j += 1) {
+        Inv[j] = Inv[j] * scale;
+      }
+    }
+  };
+
+  /** -----------------------------------------------------------------
+   * Create an orthographic projection matrix.
+   * @param left   Number Farthest left on the x-axis
+   * @param right  Number Farthest right on the x-axis
+   * @param bottom Number Farthest down on the y-axis
+   * @param top    Number Farthest up on the y-axis
+   * @param near   Number Distance to the near clipping plane along the -Z axis
+   * @param far    Number Distance to the far clipping plane along the -Z axis
+   * @return Float32Array The orthographic transformation matrix
+   */
+  self.createOrthographic = function (left, right, bottom, top, near, far) {
+
+    var M = this.create();
+
+    // Make sure there is no division by zero
+    if (left === right || bottom === top || near === far) {
+      console.log("Invalid createOrthographic parameters");
+      self.setIdentity(M);
+      return M;
+    }
+
+    var widthRatio  = 1.0 / (right - left);
+    var heightRatio = 1.0 / (top - bottom);
+    var depthRatio  = 1.0 / (far - near);
+
+    var sx = 2 * widthRatio;
+    var sy = 2 * heightRatio;
+    var sz = -2 * depthRatio;
+
+    var tx = -(right + left) * widthRatio;
+    var ty = -(top + bottom) * heightRatio;
+    var tz = -(far + near) * depthRatio;
+
+    M[0] = sx;  M[4] = 0;   M[8] = 0;   M[12] = tx;
+    M[1] = 0;   M[5] = sy;  M[9] = 0;   M[13] = ty;
+    M[2] = 0;   M[6] = 0;   M[10] = sz; M[14] = tz;
+    M[3] = 0;   M[7] = 0;   M[11] = 0;  M[15] = 1;
+
+    return M;
+  };
+
+  /** -----------------------------------------------------------------
+   * Set a perspective projection matrix based on limits of a frustum.
+   * @param left   Number Farthest left on the x-axis
+   * @param right  Number Farthest right on the x-axis
+   * @param bottom Number Farthest down on the y-axis
+   * @param top    Number Farthest up on the y-axis
+   * @param near   Number Distance to the near clipping plane along the -Z axis
+   * @param far    Number Distance to the far clipping plane along the -Z axis
+   * @return Float32Array A perspective transformation matrix
+   */
+  self.createFrustum = function (left, right, bottom, top, near, far) {
+
+    var M = this.create();
+
+    // Make sure there is no division by zero
+    if (left === right || bottom === top || near === far) {
+      console.log("Invalid createFrustrum parameters");
+      self.setIdentity(M);
+    }
+    if (near <= 0 || far <= 0) {
+      console.log('For a perspective projection, the near and far distances must be positive');
+      self.setIdentity(M);
+    } else {
+
+      var sx = 2 * near / (right - left);
+      var sy = 2 * near / (top - bottom);
+
+      var c2 = - (far + near) / (far - near);
+      var c1 = 2 * near * far / (near - far);
+
+      var tx = -near * (left + right) / (right - left);
+      var ty = -near * (bottom + top) / (top - bottom);
+
+      M[0] = sx; M[4] = 0;  M[8] = 0;    M[12] = tx;
+      M[1] = 0;  M[5] = sy; M[9] = 0;    M[13] = ty;
+      M[2] = 0;  M[6] = 0;  M[10] = c2;  M[14] = c1;
+      M[3] = 0;  M[7] = 0;  M[11] = -1;  M[15] = 0;
+    }
+
+    return M;
+  };
+
+  /** -----------------------------------------------------------------
+   * Set a perspective projection matrix based on limits of a frustum.
+   * @param left   Number Farthest left on the x-axis
+   * @param right  Number Farthest right on the x-axis
+   * @param bottom Number Farthest down on the y-axis
+   * @param top    Number Farthest up on the y-axis
+   * @param near   Number Distance to the near clipping plane along the -Z axis
+   * @param far    Number Distance to the far clipping plane along the -Z axis
+   * @return Float32Array A perspective transformation matrix
+   */
+  self.createFrustumTextbook = function (left, right, bottom, top, near, far) {
+
+    var M = this.create();
+
+    // Make sure there is no division by zero
+    if (left === right || bottom === top || near === far) {
+      console.log("Invalid createFrustrum parameters");
+      self.setIdentity(M);
+    }
+    if (near <= 0 || far <= 0) {
+      console.log('For a perspective projection, the near and far distances must be positive');
+      self.setIdentity(M);
+    } else {
+
+      var sx = 2 * near / (right - left);
+      var sy = 2 * near / (top - bottom);
+
+      var A = (right + left) / (right - left);
+      var B = (top + bottom) / (top - bottom);
+
+      var c1 = -2 * near * far / (far - near);
+      var c2 = - (far + near) / (far - near);
+
+      M[0] = sx; M[4] = 0;  M[8] = A;    M[12] = 0;
+      M[1] = 0;  M[5] = sy; M[9] = B;    M[13] = 0;
+      M[2] = 0;  M[6] = 0;  M[10] = c2;  M[14] = c1;
+      M[3] = 0;  M[7] = 0;  M[11] = -1;  M[15] = 0;
+    }
+
+    return M;
+  };
+
+  /** -----------------------------------------------------------------
+   * Create a perspective projection matrix using a field-of-view and an aspect ratio.
+   * @param fovy  Number The angle between the upper and lower sides of the viewing frustum.
+   * @param aspect Number The aspect ratio of the view window. (width/height).
+   * @param near Number  Distance to the near clipping plane along the -Z axis.
+   * @param far  Number  Distance to the far clipping plane along the -Z axis.
+   * @return Float32Array The perspective transformation matrix.
+   */
+  self.createPerspective = function (fovy, aspect, near, far) {
+
+    var M;
+
+    if (fovy <= 0 || fovy >= 180 || aspect <= 0 || near >= far || near <= 0) {
+      console.log('Invalid parameters to createPerspective');
+      self.setIdentity(M);
+    } else {
+      var half_fovy = self.toRadians(fovy) / 2;
+
+      var top = near * Math.tan(half_fovy);
+      var bottom = -top;
+      var right = top * aspect;
+      var left = -right;
+
+      M = self.createFrustum(left, right, bottom, top, near, far);
+    }
+
+    return M;
+  };
+
+  /** -----------------------------------------------------------------
+   * Set the matrix for scaling.
+   * @param M The matrix to set to a scaling matrix
+   * @param sx The scale factor along the x-axis
+   * @param sy The scale factor along the y-axis
+   * @param sz The scale factor along the z-axis
+   */
+  self.scale = function (M, sx, sy, sz) {
+    M[0] = sx;  M[4] = 0;   M[8] = 0;   M[12] = 0;
+    M[1] = 0;   M[5] = sy;  M[9] = 0;   M[13] = 0;
+    M[2] = 0;   M[6] = 0;   M[10] = sz; M[14] = 0;
+    M[3] = 0;   M[7] = 0;   M[11] = 0;  M[15] = 1;
+  };
+
+  /** -----------------------------------------------------------------
+   * Set the matrix for translation.
+   * @param M The matrix to set to a translation matrix.
+   * @param dx The X value of a translation.
+   * @param dy The Y value of a translation.
+   * @param dz The Z value of a translation.
+   */
+  self.translate = function (M, dx, dy, dz) {
+    M[0] = 1;  M[4] = 0;  M[8]  = 0;  M[12] = dx;
+    M[1] = 0;  M[5] = 1;  M[9]  = 0;  M[13] = dy;
+    M[2] = 0;  M[6] = 0;  M[10] = 1;  M[14] = dz;
+    M[3] = 0;  M[7] = 0;  M[11] = 0;  M[15] = 1;
+  };
+
+  /** -----------------------------------------------------------------
+   * Set the matrix to a rotation matrix. The axis of rotation axis may not be normalized.
+   * @paraM angle The angle of rotation (degrees)
+   * @paraM x_axis The X coordinate of axis vector for rotation.
+   * @paraM y_axis The Y coordinate of axis vector for rotation.
+   * @paraM z_axis The Z coordinate of axis vector for rotation.
+   */
+  self.rotate = function (M, angle, x_axis, y_axis, z_axis) {
+    var s, c, c1, xy, yz, zx, xs, ys, zs, ux, uy, uz;
+
+    angle = self.toRadians(angle);
+
+    s = Math.sin(angle);
+    c = Math.cos(angle);
+
+    if (x_axis !== 0 && y_axis === 0 && z_axis === 0) {
+      // Rotation around the X axis
+      if (x_axis < 0) {
+        s = -s;
+      }
+
+      M[0] = 1;  M[4] = 0;  M[8]  = 0;  M[12] = 0;
+      M[1] = 0;  M[5] = c;  M[9]  = -s; M[13] = 0;
+      M[2] = 0;  M[6] = s;  M[10] = c;  M[14] = 0;
+      M[3] = 0;  M[7] = 0;  M[11] = 0;  M[15] = 1;
+
+    } else if (x_axis === 0 && y_axis !== 0 && z_axis === 0) {
+      // Rotation around Y axis
+      if (y_axis < 0) {
+        s = -s;
+      }
+
+      M[0] = c;  M[4] = 0;  M[8]  = s;  M[12] = 0;
+      M[1] = 0;  M[5] = 1;  M[9]  = 0;  M[13] = 0;
+      M[2] = -s; M[6] = 0;  M[10] = c;  M[14] = 0;
+      M[3] = 0;  M[7] = 0;  M[11] = 0;  M[15] = 1;
+
+    } else if (x_axis === 0 && y_axis === 0 && z_axis !== 0) {
+      // Rotation around Z axis
+      if (z_axis < 0) {
+        s = -s;
+      }
+
+      M[0] = c;  M[4] = -s;  M[8]  = 0;  M[12] = 0;
+      M[1] = s;  M[5] = c;   M[9]  = 0;  M[13] = 0;
+      M[2] = 0;  M[6] = 0;   M[10] = 1;  M[14] = 0;
+      M[3] = 0;  M[7] = 0;   M[11] = 0;  M[15] = 1;
+
+    } else {
+      // Rotation around any arbitrary axis
+      axis_of_rotation[0] = x_axis;
+      axis_of_rotation[1] = y_axis;
+      axis_of_rotation[2] = z_axis;
+      V.normalize(axis_of_rotation);
+      ux = axis_of_rotation[0];
+      uy = axis_of_rotation[1];
+      uz = axis_of_rotation[2];
+
+      c1 = 1 - c;
+
+      M[0] = c + ux * ux * c1;
+      M[1] = uy * ux * c1 + uz * s;
+      M[2] = uz * ux * c1 - uy * s;
+      M[3] = 0;
+
+      M[4] = ux * uy * c1 - uz * s;
+      M[5] = c + uy * uy * c1;
+      M[6] = uz * uy * c1 + ux * s;
+      M[7] = 0;
+
+      M[8] = ux * uz * c1 + uy * s;
+      M[9] = uy * uz * c1 - ux * s;
+      M[10] = c + uz * uz * c1;
+      M[11] = 0;
+
+      M[12] = 0;
+      M[13] = 0;
+      M[14] = 0;
+      M[15] = 1;
+    }
+  };
+
+  /** -----------------------------------------------------------------
+   * Set a camera matrix.
+   * @param M Float32Array The matrix to contain the camera transformation.
+   * @param eye_x Number The x component of the eye point.
+   * @param eye_y Number The y component of the eye point.
+   * @param eye_z Number The z component of the eye point.
+   * @param center_x Number The x component of a point being looked at.
+   * @param center_y Number The y component of a point being looked at.
+   * @param center_z Number The z component of a point being looked at.
+   * @param up_dx Number The x component of a vector in the up direction.
+   * @param up_dy Number The y component of a vector in the up direction.
+   * @param up_dz Number The z component of a vector in the up direction.
+   */
+  self.lookAt = function (M, eye_x, eye_y, eye_z, center_x, center_y, center_z, up_dx, up_dy, up_dz) {
+
+    // Local coordinate system for the camera:
+    //   u maps to the x-axis
+    //   v maps to the y-axis
+    //   n maps to the z-axis
+
+    V.set(center, center_x, center_y, center_z);
+    V.set(eye, eye_x, eye_y, eye_z);
+    V.set(up, up_dx, up_dy, up_dz);
+
+    V.subtract(n, eye, center);  // n = eye - center
+    V.normalize(n);
+
+    V.crossProduct(u, up, n);
+    V.normalize(u);
+
+    V.crossProduct(v, n, u);
+    V.normalize(v);
+
+    var tx = - V.dotProduct(u,eye);
+    var ty = - V.dotProduct(v,eye);
+    var tz = - V.dotProduct(n,eye);
+
+    // Set the camera matrix
+    M[0] = u[0];  M[4] = u[1];  M[8]  = u[2];  M[12] = tx;
+    M[1] = v[0];  M[5] = v[1];  M[9]  = v[2];  M[13] = ty;
+    M[2] = n[0];  M[6] = n[1];  M[10] = n[2];  M[14] = tz;
+    M[3] = 0;     M[7] = 0;     M[11] = 0;     M[15] = 1;
+  };
+};
+
+//@formatter:on
+
+
+</textarea>
+
+<script>
+    W1_directive.createCodeMirrorEditor('W1_learn_webgl_matrix_js', 'learn_webgl_matrix.js', 'js' , true);
+</script>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+<div class='webgl_canvas' id='W1_webgl_canvas'><span style="display: none;">./simple_transform_example/simple_transform_example.html</span>
+<p>Demonstration of a JavaScript class to render a scene.</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W1_canvas" class="canvas3D">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<!-- An HTML control element that can be used to modify the rendering behavior -->
+<input type="checkbox" id="my_pause" checked> Animate<br>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../lib/learn_webgl_02.js"></script>
+<script src="../lib/learn_webgl_console_messages.js"></script>
+<script src="../lib/learn_webgl_point4.js"></script>
+<script src="../lib/learn_webgl_vector3.js"></script>
+<script src="../lib/learn_webgl_matrix.js"></script>
+<script src="../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../lib/learn_webgl_model_render_05.js"></script>
+<script src="./simple_transform_example/simple_transform_example_render.js"></script>
+<script src="./simple_transform_example/simple_transform_example_events.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var models = ["../lib/models/RobotBase.obj"];
+  var shaders = ["../lib/shaders/shader05.vert", "../lib/shaders/shader05.frag"];
+  var controls = ["my_pause"];
+  var W1_program = new Learn_webgl("W1_canvas", "SceneSimpleExampleRender", models, shaders, controls, W1_directive);
+</script>
+
+</div>
+<div style='clear:both;'></div></div>
+<div class='webgl_output' id='W1_webgl_output'>
+<div>
+<input type="checkbox" id="W1_webgl_displayErrors" name="Display" value="Errors" checked='checked' />
+<span id="webgl_errorMessages">Shader errors</span>,
+<input type="checkbox" id="W1_webgl_displayWarnings" name="Display" value="Warnings" checked='checked' />
+<span id="webgl_warningMessages">Shader warnings</span>,
+<input type="checkbox" id="W1_weggl_displayInfo" name="Display" value="InfoMessages" checked='checked' />
+<span id="infoMessages">Javascript info</span>
+</div>
+
+<div id="W1_webgl_output_div" class="webgl_output_div">
+</div>
+</div>
+<div style='clear:both;'></div>
+<a href="simple_transform_example/simple_transform_example.html" target="_blank">Open this webgl program in a new tab or window</a></div>
+<!-- webgl end --><p> </p>
+
+    <script type='text/javascript'>
+        W1_directive.show_webgl("W1_show_code",1);
+        W1_directive.show_webgl("W1_show_canvas",2);
+        W1_directive.show_webgl("W1_show_info",3);
+        W1_directive.set_canvas_height(0);
+        W1_directive.set_height_of_webgl_editors("W1",0);
+        W1_directive.bring_first_editor_to_front("W1");
+    </script>
+</div>
+<div class="section" id="html-code-to-use-learn-webgl-matrix">
+<h2>HTML Code To Use Learn_webgl_matrix<a class="headerlink" href="#html-code-to-use-learn-webgl-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> class uses code from two other classes:</p>
+<ul class="simple">
+<li><tt class="code docutils literal"><span class="pre">learn_webgl_point4.js</span></tt>, which defines a class for (x,y,z,w) points.</li>
+<li><tt class="code docutils literal"><span class="pre">learn_webgl_vector3.js</span></tt>, which defines a class for &lt;dx,dy,dz&gt; vectors.</li>
+</ul>
+<p>These files must be loaded into your browser along with the matrix library.
+To use the matrix library include <tt class="code docutils literal"><span class="pre">&lt;script&gt;</span></tt> directives in your HTML
+file that look something like this:</p>
+<div class="highlight-HTML"><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../lib/learn_webgl_point4.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../lib/learn_webgl_vector3.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../lib/learn_webgl_matrix.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+</div>
+<p>Change the file paths based on the relative location of your
+JavaScript code files to your HTML file. If the HTML and JavaScript files
+are in the same folder on the server, you can omit a file path.</p>
+</div>
+<div class="section" id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-code-library">code library</dt>
+<dd>a set of common functionality gathered into a single place. It is standard
+practice to put the functionality into a single class, or a group of classes.</dd>
+<dt id="term-column-major-order">column-major order</dt>
+<dd>values in a 2-dimensional array are store in a 1D array and organized
+by columns. (All computer memory is 1-dimensional; multi-dimensional
+arrays are always stored in computer memory as 1D arrays in some
+agreed upon order.)</dd>
+</dl>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 6.5 - Transformation Matrices' data-toggle="tooltip">
+    <a href="transformations_matrices.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="transformations_matrices.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 6.7 - Using <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> - A Robot Arm Base' data-toggle="tooltip" >
+    <a href="transformations_example1.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="transformations_example1.html" >Next Section - 6.7 - Using <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> - A Robot Arm Base</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright &lt;2015, C. Wayne Brown&gt;.
+      Last updated on Feb 18, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

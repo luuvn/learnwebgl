@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.8 - Chaining Transformations - Adding a Forearm &mdash; LearnWebGL</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrix.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglcode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglcodedemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="../_static/matrix.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglcode.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="LearnWebGL" href="../index.html" />
+    <link rel="next" title="6.9 - Chaining Transformations - Adding an Upper Arm" href="transformations_example3.html" />
+    <link rel="prev" title="6.7 - Using Learn_webgl_matrix - A Robot Arm Base" href="transformations_example1.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'LearnWebGL';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Learn WebGL</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <!-- <li><a href='/runestone/static/LearnWebGL/genindex.html'>Book Index</a></li> -->
+            <li><a href='/LearnWebGL/genindex.html'>Book Index</a></li>
+            <!--
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            -->
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> -- correct link populated by addNavbarLoginLink()
+          </ul>
+        </li>
+        -->
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/LearnWebGL/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        -->
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">6.8 - Chaining Transformations - Adding a Forearm</a><ul>
+<li><a class="reference internal" href="#a-robot-arm-the-forearm">A Robot Arm - The forearm</a></li>
+<li><a class="reference internal" href="#scene-rendering-initialization">Scene Rendering Initialization</a></li>
+<li><a class="reference internal" href="#rendering-a-single-frame">Rendering a Single Frame</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 6.7 - Using <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> - A Robot Arm Base" data-toggle="tooltip">
+    <a href="transformations_example1.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 6.9 - Chaining Transformations - Adding an Upper Arm' data-toggle="tooltip" >
+    <a href="transformations_example3.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="chaining-transformations-adding-a-forearm">
+<h1>6.8 - Chaining Transformations - Adding a Forearm<a class="headerlink" href="#chaining-transformations-adding-a-forearm" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right">
+<a class="reference internal image-reference" href="../_images/forearm.png"><img alt="Robot forearm" src="../_images/forearm.png" /></a>
+</div>
+<p>The previous lesson demonstrated the initialization and use of
+matrix transforms. This lesson will demonstrate how to chain transforms
+together to produce complex motion.</p>
+<div class="section" id="a-robot-arm-the-forearm">
+<h2>A Robot Arm - The forearm<a class="headerlink" href="#a-robot-arm-the-forearm" title="Permalink to this headline">¶</a></h2>
+<p>The previous demo rendered an object that represents the base of a robot
+arm. Let&#8217;s add a &#8220;forearm&#8221; linkage to the base. The forearm will pivot
+about the red pin in the base. For the forearm to pivot, its axis of
+rotation needs to be at the origin, so we design the model in Blender and
+place the position where the red pin will go through the forearm at the
+origin.
+This will be true of all the models you create. You design them so that
+they can be easily scaled and rotated about their <em>local origin</em>. Then the
+models can be moved to their desired location in a scene.</p>
+<p>For the forearm, we want it to pivot about the red pin in the base. Since
+rotation is always about an axis, the rotation needs to come first. Then
+the arm can be moved to the location of the pin. Using a right-to-left
+ordering of the transformations, we have:</p>
+<!-- matrixeq start -->
+<div id='M8249' class='matrixeq_container'>
+<span class='operator' style='line-height:65%' onclick='Matrixeq_directive(this);'>modelTransform =</span><span id="M8249_1" class="matrixtable"><span class="vector"><span>translateToPin<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M8249_3" class="matrixtable"><span class="vector"><span>rotateForearm<br /></span></span></span><span class='label' style='line-height:230%'> Eq1</span></div>
+<!-- end of matrixeq --><p>But wait. The base is spinning. So we can&#8217;t simply move the forearm to the
+base. The same rotation that is happening to the base needs to happen to
+the forearm. So we apply the base rotation to the forearm as well, but <strong>after</strong>
+it has been rotated and translated. So our modelTransform looks like this:</p>
+<!-- matrixeq start -->
+<div id='M6682' class='matrixeq_container'>
+<span class='operator' style='line-height:65%' onclick='Matrixeq_directive(this);'>modelTransform =</span><span id="M6682_1" class="matrixtable"><span class="vector"><span>baseRotation<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M6682_3" class="matrixtable"><span class="vector"><span>translateToPin<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M6682_5" class="matrixtable"><span class="vector"><span>rotateForearm<br /></span></span></span><span class='label' style='line-height:230%'> Eq2</span></div>
+<!-- end of matrixeq --></div>
+<div class="section" id="scene-rendering-initialization">
+<h2>Scene Rendering Initialization<a class="headerlink" href="#scene-rendering-initialization" title="Permalink to this headline">¶</a></h2>
+<p>The demo program below is a modified version of the code from the previous
+lesson. It adds a forearm model to the robot arm. We need two new
+transform matrices to manipulate the forearm. One transform will rotate
+the arm about the base&#8217;s pin. The rotation will possibly change on each new
+frame, so this matrix will be created in the initialization code but
+assigned its value in the frame rendering function. The translation matrix
+can be create and assigned its value once, since the distance to the pivot
+pin is constant and never changes. Study the example code and then
+review the code description below. If you want to experiment, the demo
+code is modifiable.</p>
+<!-- webgl start -->
+  <script>
+    var W1_directive = new Webgl_directive( 'W1' );
+  </script>
+  <div class='webgl_container' id='W1_webgl_container'>
+<div class='webgl_cmds' id='W1_webgl_cmds'>
+<button class='btn btn-success' id='W1_runb' onclick='W1_program.reload();'>Re-start</button>
+Show:
+<input type='checkbox' id='W1_show_code' onclick='W1_directive.show_webgl("W1_show_code",1);' checked='checked' /> Code
+<input type='checkbox' id='W1_show_canvas' onclick='W1_directive.show_webgl("W1_show_canvas",2);' checked='checked' /> Canvas
+<input type='checkbox' id='W1_show_info' onclick='W1_directive.show_webgl("W1_show_info",3);'/> Run Info
+<button class='btn btn-default' id='W1_saveall' onclick='W1_program.downloadAll();'>Download All</button>
+</div>
+<div class='webgl_row2' id='W1_webgl_row2'>
+<div class='webgl_editors' id='W1_webgl_editors'>
+<ul class='webgl_nav_tabs' id='W1_tab'>
+<li>
+    <a data-toggle='tab' href='#W1_simple_transform_example_render2_js'><span>simple_transform_example_render2.js</span></a>
+</li>
+</ul><div style='width:100%; position:relative;'>
+<div class="webgl_code"><div class='webgl_tab_content' id='W1_simple_transform_example_render2_js'>
+<textarea id="W1_simple_transform_example_render2_js_textarea" class="webgl_tabbed_editor">
+/**
+ * simple_transform_example_render.js, By Wayne Brown, Spring 2016*
+ */
+
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 C. Wayne Brown
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+"use strict";
+
+//-------------------------------------------------------------------------
+/**
+ * Initialize and render a scene.
+ * @param learn Learn_webgl An instance of Learn_webgl
+ * @param vshaders_dictionary Object a set of vertex shaders
+ * @param fshaders_dictionary Object a set of fragment shaders
+ * @param models Object a set of models
+ * @param controls Array a list of control id's
+ * @constructor
+ */
+window.SceneSimpleExampleRender2 = function (learn, vshaders_dictionary,
+                                         fshaders_dictionary, models, controls) {
+
+  // Private variables
+  var self = this; // Store a local reference to the new object.
+
+  var out = learn.out;
+  var events;
+  var canvas;
+
+  var gl = null;
+  var program = null;
+  var render_models = {};
+
+  var matrix = new Learn_webgl_matrix();
+  var transform = matrix.create();
+  var projection = matrix.createOrthographic(-10, 10, -2, 18, -20, 20);
+  var view = matrix.create();
+  var base_y_rotate = matrix.create();
+  var forearm_rotate = matrix.create();
+  var forearm_translate = matrix.create();
+
+  // Set the forearm_translate to a constant translation along the Y axis
+  matrix.translate(forearm_translate, 0, 2, 0);
+
+  // We don't have a real view transform at this time, but we want to look
+  // down on the model, so we will rotate everything by 10 degrees.
+  matrix.rotate(view, 10, 1, 0, 0);
+
+  // Public variables that will be changed by event handlers or that
+  // the event handlers need access to.
+  self.canvas_id = learn.canvas_id;
+  self.base_y_angle = 0.0;
+  self.forearm_angle = 0.0;
+  self.animate_active = true;
+
+  //-----------------------------------------------------------------------
+  // Public function to render the scene.
+  self.render = function () {
+
+    // Clear the entire canvas window background with the clear color and
+    // the depth buffer to perform hidden surface removal.
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    // The base is being rotated by the animation callback so the rotation
+    // about the y axis must be calculated on every frame.
+    matrix.rotate(base_y_rotate, self.base_y_angle, 0, 1, 0);
+
+    // Combine the transforms into a single transformation
+    matrix.multiplySeries(transform, projection, view, base_y_rotate);
+
+    // Draw the base model
+    render_models.base.render(transform);
+
+    // Set the rotation matrix for the forearm; rotate about the Z axis
+    matrix.rotate(forearm_rotate, self.forearm_angle, 0, 0, 1);
+
+    // Calculate the transform for the forearm
+    matrix.multiplySeries(transform, projection, view, base_y_rotate,
+        forearm_translate, forearm_rotate);
+
+    // Draw the forearm model
+    render_models.forearm.render(transform);
+  };
+
+  //-----------------------------------------------------------------------
+  // Public function to delete and reclaim all rendering objects.
+  self.delete = function () {
+    // Clean up shader programs
+    gl.deleteShader(program.vShader);
+    gl.deleteShader(program.fShader);
+    gl.deleteProgram(program);
+    program = null;
+
+    // Delete each model's buffer objects
+    render_models.base.delete();
+    render_models.forearm.delete();
+    render_models = null;
+
+    // Disable any animation
+    self.animate_active = false;
+
+    // Remove all event handlers
+    events.removeAllEventHandlers();
+    events = null;
+
+    // Release the GL graphics context
+    gl = null;
+  };
+
+  //-----------------------------------------------------------------------
+  // Object constructor. One-time initialization of the scene.
+
+  // Get the rendering context for the canvas
+  canvas = learn.getCanvas(self.canvas_id);
+  if (canvas) {
+    gl = learn.getWebglContext(canvas);
+    if (!gl) {
+      return;
+    }
+  }
+
+  // Enable hidden-surface removal
+  gl.enable(gl.DEPTH_TEST);
+
+  // Set up the rendering shader program and make it the active shader program
+  program = learn.createProgram(gl, vshaders_dictionary.shader05, fshaders_dictionary.shader05);
+  gl.useProgram(program);
+
+  // Create the Buffer Objects needed for this model and copy
+  // the model data to the GPU.
+  render_models.base = new Learn_webgl_model_render_05(gl, program, models.Base, out);
+  render_models.forearm = new Learn_webgl_model_render_05(gl, program, models.Forearm, out);
+
+  // Set up callbacks for the user and timer events
+  events = new SimpleTransformExampleEvents2(self, controls);
+  events.animate();
+};
+
+
+</textarea>
+
+<script>
+    W1_directive.createCodeMirrorEditor('W1_simple_transform_example_render2_js', 'simple_transform_example_render2.js', 'js' );
+</script>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+<div class='webgl_canvas' id='W1_webgl_canvas'><span style="display: none;">./simple_transform_example2/simple_transform_example2.html</span>
+<p>Adding a forearm to a robot base.</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W1_canvas" class="canvas3D">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<!-- An HTML control element that can be used to modify the rendering behavior -->
+-90.0 <input type="range" id="W1_forearm_angle" min="-90" max="90.0" value="0.0" step="1" style="width:250px"> +90.0 Forearm angle: <span>0.00</span> : <br>
+<input type="checkbox" id="W1_pause" checked> Animate<br>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../lib/learn_webgl_02.js"></script>
+<script src="../lib/learn_webgl_console_messages.js"></script>
+<script src="../lib/learn_webgl_point4.js"></script>
+<script src="../lib/learn_webgl_vector3.js"></script>
+<script src="../lib/learn_webgl_matrix.js"></script>
+<script src="../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../lib/learn_webgl_model_render_05.js"></script>
+<script src="./simple_transform_example2/simple_transform_example_render2.js"></script>
+<script src="./simple_transform_example2/simple_transform_example_events2.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var models = ["../lib/models/RobotBase.obj", "../lib/models/Forearm.obj"];
+  var shaders = ["../lib/shaders/shader05.vert", "../lib/shaders/shader05.frag"];
+  var controls = ["W1_forearm_angle", "W1_pause"];
+  var W1_program = new Learn_webgl("W1_canvas", "SceneSimpleExampleRender2", models, shaders, controls, W1_directive);
+</script>
+
+</div>
+<div style='clear:both;'></div></div>
+<div class='webgl_output' id='W1_webgl_output'>
+<div>
+<input type="checkbox" id="W1_webgl_displayErrors" name="Display" value="Errors" checked='checked' />
+<span id="webgl_errorMessages">Shader errors</span>,
+<input type="checkbox" id="W1_webgl_displayWarnings" name="Display" value="Warnings" checked='checked' />
+<span id="webgl_warningMessages">Shader warnings</span>,
+<input type="checkbox" id="W1_weggl_displayInfo" name="Display" value="InfoMessages" checked='checked' />
+<span id="infoMessages">Javascript info</span>
+</div>
+
+<div id="W1_webgl_output_div" class="webgl_output_div">
+</div>
+</div>
+<div style='clear:both;'></div>
+<a href="simple_transform_example2/simple_transform_example2.html" target="_blank">Open this webgl program in a new tab or window</a></div>
+<!-- webgl end --><p> </p>
+
+    <script type='text/javascript'>
+        W1_directive.show_webgl("W1_show_code",1);
+        W1_directive.show_webgl("W1_show_canvas",2);
+        W1_directive.show_webgl("W1_show_info",3);
+        W1_directive.set_canvas_height(0);
+        W1_directive.set_height_of_webgl_editors("W1",0);
+        W1_directive.bring_first_editor_to_front("W1");
+    </script>
+<p>Concerning the pre-processing actions that happen once when the constructor code
+is executed:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">Lines</th>
+<th class="head" rowspan="2">Description</th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="2">60-61</td>
+<td rowspan="2">Two new transforms are created to manipulate the forearm.</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2">64</td>
+<td rowspan="2">The translation for the forearm is set to a constant 2 units along Y.</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="3">74</td>
+<td rowspan="3">A class variable is created to store the angle of the forearm. It is
+made public so the HTML slider event handler can change its value.</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="3">153</td>
+<td rowspan="3"><em>Buffer objects</em> in the GPU are created and the model data is copied
+to the GPU for the forearm model.</td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rendering-a-single-frame">
+<h2>Rendering a Single Frame<a class="headerlink" href="#rendering-a-single-frame" title="Permalink to this headline">¶</a></h2>
+<p>Each time the scene needs to rendered, the <tt class="code docutils literal"><span class="pre">render</span></tt> function in lines
+79-103 is called. This function is identical to the previous demo version with the
+following exceptions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">Lines</th>
+<th class="head" rowspan="2">Description</th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3">96</td>
+<td rowspan="3">The rotation matrix for the forearm is set because the rotation of the
+forearm can change on each frame.</td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="4">99-100</td>
+<td rowspan="4">The transform for the forearm is calculated. Notice that the base
+rotation is included. Also notice the ordering of the transforms from
+right to left. The order of the transforms is critical.</td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="2">103</td>
+<td rowspan="2">The forearm model is rendered using the calculated transform.</td>
+</tr>
+<tr class="row-odd"></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 6.7 - Using <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> - A Robot Arm Base' data-toggle="tooltip">
+    <a href="transformations_example1.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="transformations_example1.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 6.9 - Chaining Transformations - Adding an Upper Arm' data-toggle="tooltip" >
+    <a href="transformations_example3.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="transformations_example3.html" >Next Section - 6.9 - Chaining Transformations - Adding an Upper Arm</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright &lt;2015, C. Wayne Brown&gt;.
+      Last updated on Feb 16, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

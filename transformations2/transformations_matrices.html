@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.5 - Transformation Matrices &mdash; LearnWebGL</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglcode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglcodedemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglcode.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="LearnWebGL" href="../index.html" />
+    <link rel="next" title="6.6 - A Matrix Code Library - Learn_webgl_matrix" href="matrix_library_introduction.html" />
+    <link rel="prev" title="6.4 - Rotating" href="transformations_rotate.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'LearnWebGL';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Learn WebGL</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAcrkqh1hn3lYqIpfXxNqe1T82EhXzCJGy1yMAmklpyZshyMkfDGe1Bhx+iwyGeoYRTTyphFmP+9M3NyO0+Q5XdHxgZPx/zYjjBxlZHgEV6jhE8bN2fHkkPf0VHfz0a0QQylQOPlKiOTZV7B37Jpk6yM47oVZ1tG/KNm0NkfmB76DELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIi0GmFfOlcjuAgZBbYOo9UO+CpMQa+PYqwsUmUnJvXIImeMeNI3KVTUx5Cfk9gNMo3WzPeiB5IqZo9nRAQ0mf1qL2ecLeB5tidM+lgBUhOxfj3/FecpnVFa0263gp4g+PLw8jzhvVRdUon1K3SeO1Rzh23fIRKwnrD6btt73uwtj0sl3tGd8qz+6GIcwPDdRk9VcUffiBJT/ZagKgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMzExMDMxMzQxMzFaMCMGCSqGSIb3DQEJBDEWBBRDJF8w+zsMr7FSk+pwinB5f5D4rzANBgkqhkiG9w0BAQEFAASBgHw1LMHpkpaqHIvDGdFE0eG+2mZlmMnUeDCBhQlbc7QMzFQYKTV94NfaebBO4PmNdADe1rq4WidSRZZbE7CzkX9IGENYnBTWY0hb2l0lGdGrJdGeWyV3ekg9WVaFMMumrekds96h3Cx7dGz2kWDzIai2iEXE/qoE+xpkyXAYZNV3-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <!-- <li><a href='/runestone/static/LearnWebGL/genindex.html'>Book Index</a></li> -->
+            <li><a href='/LearnWebGL/genindex.html'>Book Index</a></li>
+            <!--
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            -->
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> -- correct link populated by addNavbarLoginLink()
+          </ul>
+        </li>
+        -->
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/LearnWebGL/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        -->
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">6.5 - Transformation Matrices</a><ul>
+<li><a class="reference internal" href="#matrix-basics">Matrix Basics</a></li>
+<li><a class="reference internal" href="#basic-transformations-in-matrix-format">Basic Transformations In Matrix Format</a></li>
+<li><a class="reference internal" href="#basic-properties-of-matrices-order-matters">Basic Properties of Matrices - Order Matters!</a></li>
+<li><a class="reference internal" href="#the-identity-matrix-and-the-matrix-inverse">The Identity Matrix and the Matrix Inverse</a></li>
+<li><a class="reference internal" href="#matrix-conventions">Matrix Conventions</a></li>
+<li><a class="reference internal" href="#glossary">Glossary</a></li>
+<li><a class="reference internal" href="#extra-resources">Extra Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 6.4 - Rotating" data-toggle="tooltip">
+    <a href="transformations_rotate.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 6.6 - A Matrix Code Library - <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt>' data-toggle="tooltip" >
+    <a href="matrix_library_introduction.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="transformation-matrices">
+<h1>6.5 - Transformation Matrices<a class="headerlink" href="#transformation-matrices" title="Permalink to this headline">¶</a></h1>
+<p>The previous three lessons described the basic transformations that can be
+applied to models: translation, scaling, and rotation. These
+transformations can be combined to produce complex motion. But we need
+an easy and efficient way to combine these transformations. The solution is matrices!</p>
+<p>This lesson will review the basics of matrix math and show you how to
+combine transformations using matrices. Matrices are used for almost all
+computer graphics calculations, including camera manipulation and the
+projection of your 3D scene onto a 2D viewing window. Therefore, this is a
+critical section of material that you need to master.</p>
+<p>It is not the purpose of this tutorial to provide mathematical proofs
+for these concepts, but rather to give you a solid foundation in how to use
+matrix math to create computer graphics. If you desire a formal education
+in matrix math, I suggest you study the <a class="reference external" href="https://www.khanacademy.org/math/linear-algebra">linear algebra course</a> at Kahn
+academy, but that level of expertise is not required to master computer
+graphics.</p>
+<div class="section" id="matrix-basics">
+<h2>Matrix Basics<a class="headerlink" href="#matrix-basics" title="Permalink to this headline">¶</a></h2>
+<p>A system of equations can be written in matrix format by separating out
+the coefficients of the equations from the variables. Let&#8217;s take the
+general equation for rotation and put it into matrix form. Please note
+that the <em>x</em>, <em>y</em>, and <em>z</em> values are our &#8220;variables&#8221; and the <em>fn</em> values are the
+&#8220;coefficients&#8221; of the equation terms. To manipulate a graphics
+model for a
+computer graphics scene, we will create the transformation by choosing
+appropriate <em>fn</em> values and then apply the transformation to every vertex
+in a model. The <em>fn</em> values are constant for the rendering of a single
+frame of animation, but they typically change for the next animation frame.</p>
+<p>The equations:</p>
+<div class="code C highlight-python"><div class="highlight"><pre>f1*x + f2*y + f3*z = x&#39;
+f4*x + f5*y + f6*z = y&#39;
+f7*x + f8*y + f9*z = z&#39;
+</pre></div>
+</div>
+<p>looks like this in matrix format:</p>
+<!-- matrixeq start -->
+<div id='M8445' class='matrixeq_container'>
+<span id="M8445_0" class="matrixtable"><span class="vector"><span>f1<br /></span><span>f4<br /></span><span>f7<br /></span></span><span class="vector"><span>f2<br /></span><span>f5<br /></span><span>f8<br /></span></span><span class="vector"><span>f3<br /></span><span>f6<br /></span><span>f9<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>*</span><span id="M8445_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>=</span><span id="M8445_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span></span></span><span class='label' style='line-height:390%'> Eq1</span></div>
+<!-- end of matrixeq --><p>The matrix equations presented in these tutorials can be
+executed by clicking on the operator symbols in the equation. Try it now by
+clicking on the
+multiplication symbol in the equation above. A new version of the equation
+will be displayed below the original equation, where the matrices before
+and after the operation symbol have been replaced by a single
+matrix that is the result of the operation. Matrices are multiplied
+as follows: each element in the result is calculated by taking the
+corresponding row of the left matrix and the corresponding column of the
+right matrix and multiplying the individual corresponding elements and
+then adding up the terms. If you place your cursor over any element in the
+newly displayed matrix,
+the corresponding rows and columns that were used to calculate that term
+will be highlighted in the original matrices. Perhaps it would be easier
+to visualize these issues if the matrix contained numbers instead of
+symbols. Perform the matrix multiplication below by clicking on the
+multiplication symbol and then hover your mouse over each term of the
+result.</p>
+<!-- matrixeq start -->
+<div id='M7580' class='matrixeq_container'>
+<span id="M7580_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>5<br /></span><span>6<br /></span></span><span class="vector"><span>0<br /></span><span>2<br /></span><span>1<br /></span></span><span class="vector"><span>3<br /></span><span>0<br /></span><span>0<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>*</span><span id="M7580_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>=</span><span id="M7580_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span></span></span><span class='label' style='line-height:390%'> Eq2</span></div>
+<!-- end of matrixeq --><p>The equation used to calculate each term is intentionally shown in the result
+so that you can see where each value comes from. Selecting the &#8220;-&#8221;
+button to the right of the equation will reduce each term to its simplest
+calculated value. Please use this functionality throughout these tutorials
+to closely examine how matrices work. If you click on the equal sign in
+the equation, each side of the equation will be reduced to its simplest
+form. The &#8220;X&#8221; button to the right will remove the generated equation from the web page.</p>
+</div>
+<div class="section" id="basic-transformations-in-matrix-format">
+<h2>Basic Transformations In Matrix Format<a class="headerlink" href="#basic-transformations-in-matrix-format" title="Permalink to this headline">¶</a></h2>
+<p>From the previous lesson you learned that a scaling transformation is
+performed by multiplying the vertex components like this, where (x,y,z) is a
+vertex, and (x&#8217;,y&#8217;z&#8217;) is a transformed vertex:</p>
+<div class="code C highlight-python"><div class="highlight"><pre>x * sx = x&#39;
+y * sy = y&#39;
+z * sz = z&#39;
+</pre></div>
+</div>
+<p>These scaling equations can be written in matrix format like this:</p>
+<!-- matrixeq start -->
+<div id='M4206' class='matrixeq_container'>
+<span id="M4206_0" class="matrixtable"><span class="vector"><span>sx<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>sy<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>sz<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>*</span><span id="M4206_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>=</span><span id="M4206_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span></span></span><span class='label' style='line-height:390%'> Eq3</span></div>
+<!-- end of matrixeq --><p>Multiply the matrices and reduce the equations to see the equivalence.
+It may seem crazy to take such simple equations and make them more
+complex by using matrices. But you will see the power of matrices shortly.</p>
+<p>Rotation transformations can easily be written in matrix format. Let&#8217;s
+put the equations for rotation about the Z axis in matrix format:</p>
+<div class="code JavaScript highlight-python"><div class="highlight"><pre>x * cos(angle) + y * -sin(angle) = x&#39;
+x * sin(angle) + y *  cos(angle) = y&#39;
+                               z = z&#39;
+</pre></div>
+</div>
+<!-- matrixeq start -->
+<div id='M2589' class='matrixeq_container'>
+<span id="M2589_0" class="matrixtable"><span class="vector"><span>cos(angle)<br /></span><span>sin(angle)<br /></span><span>0<br /></span></span><span class="vector"><span>-sin(angle)<br /></span><span>cos(angle)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>*</span><span id="M2589_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>=</span><span id="M2589_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span></span></span><span class='label' style='line-height:390%'> Eq4</span></div>
+<!-- end of matrixeq --><p>Now we come to the hard one &#8211; translation. Notice that in each of the
+previous examples, the transformation of each vertex component was some
+combination of the original <em>x</em>, <em>y</em>, and <em>z</em> values. But for translation, we simply
+want to add a value to each component. The matrices we have used so
+far have no way to do this. So we need a larger matrix. Instead of a 3 by 3
+matrix, we use a 4 by 4 like this:</p>
+<p>The translation equations are:</p>
+<div class="code C highlight-python"><div class="highlight"><pre>x + tx = x&#39;
+y + ty = y&#39;
+z + tz = z&#39;
+</pre></div>
+</div>
+<p>The equivalent equations in matrix format are:</p>
+<!-- matrixeq start -->
+<div id='M5113' class='matrixeq_container'>
+<span id="M5113_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>tx<br /></span><span>ty<br /></span><span>tz<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5113_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M5113_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq5</span></div>
+<!-- end of matrixeq --><p>Let&#8217;s make some observations about this matrix multiplication:</p>
+<ul class="simple">
+<li>The additional component of 1 at the end of the (x,y,z) column vector
+guarantees that the offsets (tx, ty, tz) will be unchanged.</li>
+<li>The one&#8217;s down the diagonal guarantee that the original (x,y,z) values
+are included in the results unchanged.</li>
+<li>The last row of the transformation matrix (0,0,0,1) guarantees that the
+1 component at the end of the (x,y,z) value remains a 1 in the result.</li>
+</ul>
+<p>Question? Do we really need that last row in the transformation matrix? Could we do this?</p>
+<!-- matrixeq start -->
+<div id='M4049' class='matrixeq_container'>
+<span id="M4049_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span></span><span class="vector"><span>tx<br /></span><span>ty<br /></span><span>tz<br /></span></span></span><span class='operator' style='line-height:390%' onclick='Matrixeq_directive(this);'>*</span><span id="M4049_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M4049_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span></span></span><span class='label' style='line-height:390%'> Eq6</span></div>
+<!-- end of matrixeq --><p>From a pure mathematical perspective, yes you can.
+However, our goal is to create a single, <em>consistent</em>
+format for applying <strong>a series of transformations</strong>. In addition, we need
+the ability to undo (or reverse) transformations, which requires that
+our transformation matrices be square. Therefore, the 4<sup>th</sup> row in a
+transformation matrix is required.</p>
+<p>The extra value added to a vertex at the end, the trailing <tt class="code docutils literal"><span class="pre">1</span></tt>, is called
+the <em>homogeneous coordinate</em>. The standard convention is to call this the
+<tt class="code docutils literal"><span class="pre">w</span></tt> component. Therefore, a vertex in <em>homogeneous coordinates</em> looks
+like (x,y,z,w). The <tt class="code docutils literal"><span class="pre">w</span></tt> component is useful for more than just translation,
+and we will discuss those uses in future lessons. But for now, notice that
+the <tt class="code docutils literal"><span class="pre">w</span></tt> component implements (and controls) translation. For a vertex,
+we always want the <tt class="code docutils literal"><span class="pre">w</span></tt> component to be <tt class="code docutils literal"><span class="pre">1</span></tt>. However, remember
+that a <strong>vector</strong> has a magnitude and a direction, but no location. <strong>A vector
+can&#8217;t be translated!</strong> When we represent a <strong>vector</strong> using <em>homogeneous coordinates</em>,
+the <tt class="code docutils literal"><span class="pre">w</span></tt> value need to be zero! Since we rarely store the homogeneous component
+in memory to reduce memory usage, you will have to add the homogeneous component
+when it is needed. Just remember:</p>
+<ul class="simple">
+<li>For <strong>vertices</strong> use (x,y,z,1), which allows for scaling, rotation, and translation.</li>
+<li>For <strong>vectors</strong> use &lt;dx,dy,dz,0&gt;, which allows for scaling and rotation (but not translation).</li>
+</ul>
+<p>Putting this all together gives us the following <strong>consistent</strong> way to
+perform our three basic transformations:</p>
+<p><strong>Scale</strong>:</p>
+<!-- matrixeq start -->
+<div id='M7838' class='matrixeq_container'>
+<span id="M7838_0" class="matrixtable"><span class="vector"><span style="color:#C8255D;">sx<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span style="color:#C8255D;">sy<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span style="color:#C8255D;">sz<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M7838_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M7838_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq7</span></div>
+<!-- end of matrixeq --><p><strong>Translate</strong>:</p>
+<!-- matrixeq start -->
+<div id='M3033' class='matrixeq_container'>
+<span id="M3033_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span style="color:#C8255D;">tx<br /></span><span style="color:#C8255D;">ty<br /></span><span style="color:#C8255D;">tz<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M3033_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M3033_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq8</span></div>
+<!-- end of matrixeq --><p><strong>Rotate</strong> <em>angle</em> degrees about the Z axis:</p>
+<!-- matrixeq start -->
+<div id='M4766' class='matrixeq_container'>
+<span id="M4766_0" class="matrixtable"><span class="vector"><span>cos(angle)<br /></span><span>sin(angle)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>-sin(angle)<br /></span><span>cos(angle)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M4766_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M4766_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq9</span></div>
+<!-- end of matrixeq --><p><strong>Rotate</strong> <em>angle</em> degrees about the Y axis:</p>
+<!-- matrixeq start -->
+<div id='M5834' class='matrixeq_container'>
+<span id="M5834_0" class="matrixtable"><span class="vector"><span>cos(angle)<br /></span><span>0<br /></span><span>-sin(angle)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>sin(angle)<br /></span><span>0<br /></span><span>cos(angle)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5834_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M5834_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq10</span></div>
+<!-- end of matrixeq --><p><strong>Rotate</strong> <em>angle</em> degrees about the X axis:</p>
+<!-- matrixeq start -->
+<div id='M9082' class='matrixeq_container'>
+<span id="M9082_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>cos(angle)<br /></span><span>sin(angle)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>-sin(angle)<br /></span><span>cos(angle)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M9082_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M9082_4" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq11</span></div>
+<!-- end of matrixeq --><p><strong>Rotate</strong> <em>angle</em> degrees about any axis defined as &lt;ux,uy,uz&gt;:</p>
+<p>Let&#8217;s derive a transformation for rotating about any axis by combining the
+transformations we have already created. This will give you an example
+of how basic transformations
+can be combined to form more complex transformations. If we want to rotate
+about an axis defined by &lt;ux, uy, uz&gt;, then we can accomplish this by
+performing the following sequence of transformations:</p>
+<ol class="arabic simple">
+<li>Rotate about the Z axis to place the vector &lt;ux, uy, uz&gt; in the Z-X plane. Let’s call this new vector &lt;ux’, uy’, uz’&gt;.</li>
+<li>Then rotate about the Y axis to place &lt;ux’, uy’, uz’&gt; along the X axis.</li>
+<li>Then rotate about the X axis the desired angle.</li>
+<li>Then rotate about the Y axis to place &lt;ux’, uy’, uz’&gt; back to its original location.</li>
+<li>Then rotate about the Z axis to place &lt;ux, uy, uz&gt; back in its original location.</li>
+</ol>
+<p>This series of 5 rotations will provide the visual affect of rotating a model
+about the axis &lt;ux,uy,uz&gt;. But we don&#8217;t want to do all of the 5 transformations
+over and over again for each vertex. We want a single transformation that
+will produce the visual motion we desire. We can accomplish this by
+multiplying the 5 matrices together before we start rendering, and
+then use a single transformation matrix to perform the desired rotation.
+To make this idea clear, lets perform the 5 transformations above in the
+order they are specified. The order is critical, because if you change
+the order, you will get a very different result.</p>
+<p>We need to calculate 2 angles of rotation that will get the axis of rotation
+aligned with the X axis. Let <em>i</em> be the angle in step one, <em>j</em>
+be the angle for step two, and <em>k</em> be the angle for step 3. And let&#8217;s use
+<em>s()</em> and <em>c()</em> to represent the <em>sin</em> and <em>cosine</em> functions. The
+transformation looks like this:</p>
+<!-- matrixeq start -->
+<div id='M5047' class='matrixeq_container'>
+<span id="M5047_0" class="matrixtable"><span class="vector"><span>c(-i)<br /></span><span>s(-i)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>-s(-i)<br /></span><span>c(-i)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5047_2" class="matrixtable"><span class="vector"><span>c(-j)<br /></span><span>0<br /></span><span>-s(-j)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>s(-j)<br /></span><span>0<br /></span><span>c(-j)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5047_4" class="matrixtable"><span class="vector"><span>1<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>c(k)<br /></span><span>s(k)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>-s(k)<br /></span><span>c(k)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5047_6" class="matrixtable"><span class="vector"><span>c(j)<br /></span><span>0<br /></span><span>-s(j)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>s(j)<br /></span><span>0<br /></span><span>c(j)<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5047_8" class="matrixtable"><span class="vector"><span>c(i)<br /></span><span>s(i)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>-s(i)<br /></span><span>c(i)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M5047_10" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M5047_12" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq12</span></div>
+<!-- end of matrixeq --><p>Perform the matrix multiplications in the above equation to see what the
+single transformation is equal to. Note that the resulting answer is
+in terms of sin and cos functions because the equations do not contain
+specific numerical values, but in a specific instances, you would have
+a single 4-by-4 matrix with 16 numeric values that would perform your
+desired transformation. If the model you were transforming contained
+10,000 vertices, reducing your complex transformations to a single 4-by-4
+matrix saves a huge amount of computation.</p>
+<p>It should be noted that a rotation about an axis &lt;ux, uy, uz&gt; can be calculated
+using simpler equations by combining like terms in the above equations. For operations
+that are common, such as rotating about a specific axis, the calculations
+are simplified to their simplest form before programming them into algorithms.
+But for the general case, complex motion will be created by forming a <strong>series</strong>
+of 4x4 matrix transformations and combining them into a single transformation
+matrix.</p>
+<p>Let&#8217;s take a look at some basic properties of matrices.</p>
+</div>
+<div class="section" id="basic-properties-of-matrices-order-matters">
+<h2>Basic Properties of Matrices - Order Matters!<a class="headerlink" href="#basic-properties-of-matrices-order-matters" title="Permalink to this headline">¶</a></h2>
+<p>A matrix represents a system of equations. Therefore, only a small set of
+operations make sense. The fundamental operation is multiplication. We
+defined how matrices are multiplied in the above discussion. The important
+thing to understand
+is that the order of multiplication matters. In general, <tt class="code docutils literal"><span class="pre">M1*M2</span> <span class="pre">!=</span> <span class="pre">M2*M1</span></tt>.
+Experiment with the following example.</p>
+<!-- matrixeq start -->
+<div id='M2818' class='matrixeq_container'>
+<span id="M2818_0" class="matrixtable"><span class="vector"><span>2<br /></span><span>5<br /></span></span><span class="vector"><span>4<br /></span><span>-3<br /></span></span></span><span class='operator' style='line-height:350%' onclick='Matrixeq_directive(this);'>*</span><span id="M2818_2" class="matrixtable"><span class="vector"><span>-4<br /></span><span>-4<br /></span></span><span class="vector"><span>3<br /></span><span>8<br /></span></span></span><span class='operator' style='line-height:350%' onclick='Matrixeq_directive(this);'>!=</span><span id="M2818_4" class="matrixtable"><span class="vector"><span>-4<br /></span><span>-4<br /></span></span><span class="vector"><span>3<br /></span><span>8<br /></span></span></span><span class='operator' style='line-height:350%' onclick='Matrixeq_directive(this);'>*</span><span id="M2818_6" class="matrixtable"><span class="vector"><span>2<br /></span><span>5<br /></span></span><span class="vector"><span>4<br /></span><span>-3<br /></span></span></span><span class='label' style='line-height:350%'> Eq13</span></div>
+<!-- end of matrixeq --><p>From a computer graphics perspective it is easy to understand that matrix
+order matters. For example, physically
+take some object, assume it is located at the origin, and perform these
+transformations on it:</p>
+<ol class="arabic simple">
+<li>Move it 2 units down the X axis.</li>
+<li>Then rotate it about the Z axis by 90 degrees.</li>
+</ol>
+<p>Now, perform the transformations in reverse order:</p>
+<ol class="arabic simple">
+<li>Rotate the object 90 degrees about the Z axis.</li>
+<li>Then move it 2 units down the X axis.</li>
+</ol>
+<p>The object ends up in a totally different place!</p>
+<p>Let&#8217;s perform these transformations in matrix format. The equation below
+moves an object 2 units down the x axis and then rotates 90 degrees about
+the Z axis:</p>
+<!-- matrixeq start -->
+<div id='M7558' class='matrixeq_container'>
+<span id="M7558_0" class="matrixtable"><span class="vector"><span>cos(90)<br /></span><span>sin(90)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>-sin(90)<br /></span><span>cos(90)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M7558_2" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>2<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M7558_4" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M7558_6" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq14</span></div>
+<!-- end of matrixeq --><p>while this equation performs the rotation first and then the translation:</p>
+<!-- matrixeq start -->
+<div id='M6184' class='matrixeq_container'>
+<span id="M6184_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>2<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M6184_2" class="matrixtable"><span class="vector"><span>cos(90)<br /></span><span>sin(90)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>-sin(90)<br /></span><span>cos(90)<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M6184_4" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M6184_6" class="matrixtable"><span class="vector"><span>x'<br /></span><span>y'<br /></span><span>z'<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq15</span></div>
+<!-- end of matrixeq --><p>Multiply and simplify the two equations to see that the transformations
+indeed are totally different! <strong>The matrix that is closest to the (x,y,z,1)
+vector is the transformation that happens first.</strong> Then the transformation
+to the left of that, and so on. Therefore, you must order the
+transformations from right to left in your calculations to get your
+desired order of transformations.</p>
+</div>
+<div class="section" id="the-identity-matrix-and-the-matrix-inverse">
+<h2>The Identity Matrix and the Matrix Inverse<a class="headerlink" href="#the-identity-matrix-and-the-matrix-inverse" title="Permalink to this headline">¶</a></h2>
+<p>An identity matrix will not change the values of another matrix if the
+two matrices are multiplied together. This is identical to multiplying a
+single value by one. Experiment with the following two examples.</p>
+<!-- matrixeq start -->
+<div id='M2505' class='matrixeq_container'>
+<span id="M2505_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M2505_2" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M2505_4" class="matrixtable"><span class="vector"><span>x<br /></span><span>y<br /></span><span>z<br /></span><span>1<br /></span></span></span><span class='label' style='line-height:460%'> Eq16</span></div>
+<!-- end of matrixeq --><!-- matrixeq start -->
+<div id='M9098' class='matrixeq_container'>
+<span id="M9098_0" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>0<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>*</span><span id="M9098_2" class="matrixtable"><span class="vector"><span>2<br /></span><span>8<br /></span><span>0<br /></span><span>1<br /></span></span><span class="vector"><span>-3<br /></span><span>-4<br /></span><span>5<br /></span><span>2<br /></span></span><span class="vector"><span>5<br /></span><span>3<br /></span><span>-6<br /></span><span>3<br /></span></span><span class="vector"><span>7<br /></span><span>2<br /></span><span>5<br /></span><span>4<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M9098_4" class="matrixtable"><span class="vector"><span>2<br /></span><span>8<br /></span><span>0<br /></span><span>1<br /></span></span><span class="vector"><span>-3<br /></span><span>-4<br /></span><span>5<br /></span><span>2<br /></span></span><span class="vector"><span>5<br /></span><span>3<br /></span><span>-6<br /></span><span>3<br /></span></span><span class="vector"><span>7<br /></span><span>2<br /></span><span>5<br /></span><span>4<br /></span></span></span><span class='label' style='line-height:460%'> Eq17</span></div>
+<!-- end of matrixeq --><p>An identity matrix is represented by a capital I.</p>
+<p>A 4-by-4 matrix performs a transformation on a set of vertices. There
+is often a need to reverse the transformation to get the original
+values back. In algebra, the way you undo an addition is to subtract.
+For example, examine how the <tt class="code docutils literal"><span class="pre">5</span></tt> is moved to the other side of the equation
+by subtraction it from both sides:</p>
+<div class="code C highlight-python"><div class="highlight"><pre>x + 5 = x&#39;
+x + 5 - 5 = x&#39; - 5
+x = x&#39; - 5
+</pre></div>
+</div>
+<p>In a similar manner, the way to undo multiplication is to divide, (or multiply
+times the reciprocal). For example, examine how the multiplication by <tt class="code docutils literal"><span class="pre">5</span></tt>
+is moved to the other side of the equation by dividing by <tt class="code docutils literal"><span class="pre">5</span></tt>.</p>
+<div class="code C highlight-python"><div class="highlight"><pre>x * 5 = x&#39;
+(x * 5) / 5 = x&#39; / 5
+x = x&#39; / 5
+x = x&#39; * (1/5)
+</pre></div>
+</div>
+<p>Division for matrices is performed by multiplying by a <em>matrix inverse</em>.
+Given a matrix M, if you multiply it by its inverse, the result is the
+identity matrix. The notation M<sup>-1</sup> represents the inverse of M.
+A matrix inverse will produce an identity matrix regardless of the order
+of the matrix multiplication. That is,</p>
+<!-- matrixeq start -->
+<div id='M9828' class='matrixeq_container'>
+<span id="M9828_0" class="matrixtable"><span class="vector"><span>M<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M9828_2" class="matrixtable"><span class="vector"><span>M<sup>-1</sup><br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>=</span><span id="M9828_4" class="matrixtable"><span class="vector"><span>M<sup>-1</sup><br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M9828_6" class="matrixtable"><span class="vector"><span>M<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>=</span><span id="M9828_8" class="matrixtable"><span class="vector"><span>I<br /></span></span></span><span class='label' style='line-height:230%'> Eq18</span></div>
+<!-- end of matrixeq --><p>An arbitrary 4-by-4 matrices may or may not have an inverse. However, if you create
+a transformation which is a combination of scaling, rotation, and/or
+translation, the resulting 4-by-4 matrix will always have an inverse.
+We will discuss how a matrix inverse is used in later lessons.</p>
+<p>Matrix math follows the same simple rules as algebra. If you have an equation,
+you must always perform the same operation on both sides of the equation
+to maintain its equality. However, since the order of matrix multiplication
+matters, if you pre-multiply one side of an equation by a matrix, make sure
+you pre-multiply the other side of the equation by the same matrix. Consider
+the following equation:</p>
+<!-- matrixeq start -->
+<div id='M8102' class='matrixeq_container'>
+<span id="M8102_0" class="matrixtable"><span class="vector"><span>S<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M8102_2" class="matrixtable"><span class="vector"><span>T<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>=</span><span id="M8102_4" class="matrixtable"><span class="vector"><span>U<br /></span></span></span><span class='label' style='line-height:230%'> Eq19</span></div>
+<!-- end of matrixeq --><p>In the following manipulation of this equation, the first and second
+equations are valid, while the third is not valid.</p>
+<!-- matrixeq start -->
+<div id='M9022' class='matrixeq_container'>
+<span id="M9022_0" class="matrixtable" style="color:#C8255D" ><span class="vector"><span>B<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M9022_2" class="matrixtable"><span class="vector"><span>S<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M9022_4" class="matrixtable"><span class="vector"><span>T<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>=</span><span id="M9022_6" class="matrixtable" style="color:#C8255D" ><span class="vector"><span>B<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M9022_8" class="matrixtable"><span class="vector"><span>U<br /></span></span></span><span class='label' style='line-height:230%'> Eq20 - is valid because B is pre-multiplied</span></div>
+<!-- end of matrixeq --><!-- matrixeq start -->
+<div id='M3101' class='matrixeq_container'>
+<span id="M3101_0" class="matrixtable"><span class="vector"><span>S<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M3101_2" class="matrixtable"><span class="vector"><span>T<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M3101_4" class="matrixtable" style="color:#C8255D" ><span class="vector"><span>B<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>=</span><span id="M3101_6" class="matrixtable"><span class="vector"><span>U<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M3101_8" class="matrixtable" style="color:#C8255D" ><span class="vector"><span>B<br /></span></span></span><span class='label' style='line-height:230%'> Eq21 - is valid because B is post-multiplied</span></div>
+<!-- end of matrixeq --><!-- matrixeq start -->
+<div id='M7299' class='matrixeq_container'>
+<span id="M7299_0" class="matrixtable"><span class="vector"><span>S<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M7299_2" class="matrixtable"><span class="vector"><span>T<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M7299_4" class="matrixtable" style="color:#C8255D" ><span class="vector"><span>B<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>=</span><span id="M7299_6" class="matrixtable" style="color:#C8255D" ><span class="vector"><span>B<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M7299_8" class="matrixtable"><span class="vector"><span>U<br /></span></span></span><span class='label' style='line-height:230%'> Eq22 - is invalid because the multiplications are inconsistent</span></div>
+<!-- end of matrixeq --></div>
+<div class="section" id="matrix-conventions">
+<h2>Matrix Conventions<a class="headerlink" href="#matrix-conventions" title="Permalink to this headline">¶</a></h2>
+<p>The fundamental issue with computer graphics transformations is
+their order. As we have already discussed, this
+correlates to the ordering of your matrix multiplications. By convention
+WebGL (and the OpenGL system it was derived from) orders the
+transformations from right to left. This is because of the way we created
+the initial equations. We started by positioning the
+transformation matrix
+to the left of the (x,y,z,w) vertex. There is another way you can perform
+the same multiplication. You can put the (x,y,z,w) vertex at the front
+of the equation, like this:</p>
+<!-- matrixeq start -->
+<div id='M8989' class='matrixeq_container'>
+<span id="M8989_0" class="matrixtable"><span class="vector"><span>x<br /></span></span><span class="vector"><span>y<br /></span></span><span class="vector"><span>z<br /></span></span><span class="vector"><span>1<br /></span></span></span><span class='operator' style='line-height:230%' onclick='Matrixeq_directive(this);'>*</span><span id="M8989_2" class="matrixtable"><span class="vector"><span>1<br /></span><span>0<br /></span><span>0<br /></span><span>tx<br /></span></span><span class="vector"><span>0<br /></span><span>1<br /></span><span>0<br /></span><span>ty<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>1<br /></span><span>tz<br /></span></span><span class="vector"><span>0<br /></span><span>0<br /></span><span>0<br /></span><span>1<br /></span></span></span><span class='operator' style='line-height:460%' onclick='Matrixeq_directive(this);'>=</span><span id="M8989_4" class="matrixtable"><span class="vector"><span>x'<br /></span></span><span class="vector"><span>y'<br /></span></span><span class="vector"><span>z'<br /></span></span><span class="vector"><span>1<br /></span></span></span><span class='label' style='line-height:230%'> Eq19</span></div>
+<!-- end of matrixeq --><p>Notice that the translation matrix in the above example had to move the
+translation values to the last row of the matrix. In fact, every transformation
+matrix we have discussed (except scaling) will have a different format if
+you post-multiply the transformations. And if you use this convention,
+the transformations are applied from left to right, not right to left.
+The important thing
+is that you select a convention and use it consistently. Never mix
+the conventions! For this entire tutorial, we will use the WebGL/OpenGL
+convention of pre-multiplying the transformations times the vertices.</p>
+<p>A note of caution. It is easy to search the web and get conflicting
+information about graphic transformations because there are
+two ways to structure the transformations, pre-multiplying or post-multiplying.
+OpenGL uses the pre-multiplying convention while
+Microsoft&#8217;s Direct3D uses the post-multiplying convention. Therefore, make
+sure that you understand which convention a web page is assuming so you
+don&#8217;t get confused by conflicting information.</p>
+</div>
+<div class="section" id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-vector">vector</dt>
+<dd>In mathematics, a <em>vector</em> is any ordered list of values. In computer
+graphics a <em>vector</em> represents a direction in 3D space.</dd>
+<dt id="term-matrix">matrix</dt>
+<dd>The coefficients of a system of equations with the variables removed.</dd>
+<dt id="term-linear-algebra">linear algebra</dt>
+<dd>The mathematical concepts and theory concerning vectors and matrices.</dd>
+<dt id="term-matrix-multiplication">matrix multiplication</dt>
+<dd>An algorithm for multiplying two matrices to produce a single matrix.</dd>
+<dt id="term-square-matrix">square matrix</dt>
+<dd>A matrix that has the same number of rows as columns.</dd>
+<dt id="term-transformation-matrix">transformation matrix</dt>
+<dd>A 4x4 matrix with values in specific locations to perform a specific
+computer graphics operation.</dd>
+<dt id="term-pre-multiply-matrix">pre-multiply matrix</dt>
+<dd>The matrix goes on the left side of the multiplication operator.</dd>
+<dt id="term-post-multiply-matrix">post-multiply matrix</dt>
+<dd>The matrix goes on the right side of the multiplication operator.</dd>
+<dt id="term-identity-matrix">identity matrix</dt>
+<dd>A square matrix with 1&#8217;s down the diagonal and zeros in all other positions.
+Multiplication of a matrix times an identity matrix does not change the
+original matrix using either <em>pre</em> or <em>post</em> multiplication.</dd>
+<dt id="term-matrix-inverse">matrix inverse</dt>
+<dd>A matrix that is derived from another matrix such that the multiplication
+of the original matrix and its inverse results in an identity matrix. A
+matrix inverse can be either <em>pre</em> or <em>post</em> multiplied to get an identity matrix.
+Multiplying by a matrix inverse is equivalent to division in algebra.</dd>
+</dl>
+</div>
+<div class="section" id="extra-resources">
+<h2>Extra Resources<a class="headerlink" href="#extra-resources" title="Permalink to this headline">¶</a></h2>
+<p>If your understanding of matrix math is still weak, students have recommended
+this <a class="reference external" href="https://www.mathsisfun.com/algebra/matrix-multiplying.html">math is fun</a> web site.</p>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 6.4 - Rotating' data-toggle="tooltip">
+    <a href="transformations_rotate.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="transformations_rotate.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 6.6 - A Matrix Code Library - <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt>' data-toggle="tooltip" >
+    <a href="matrix_library_introduction.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="matrix_library_introduction.html" >Next Section - 6.6 - A Matrix Code Library - <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt></a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright &lt;2015, C. Wayne Brown&gt;.
+      Last updated on Feb 22, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

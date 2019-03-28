@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Example LearnWebGL HTML file, by Wayne Brown, Fall 2015 -->
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="Learn, WebGL, tutorial, example">
+  <meta name="description" content="WebGL tutorials - an example">
+  <meta name="author" content="Wayne Brown">
+  <title>WebGL Example</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/webglcode.css" />
+</head>
+
+<body>
+<p>An example of model translation.</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W1_canvas" class="canvas3D">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<!-- An HTML control element that can be used to modify the rendering behavior -->
+<input type="checkbox" id="W1_animate" checked> Animate <br>
+tx -6.0 <input type="range" id="W1_xtranslate" min="-6.0" max="6.0" value="0.0" step="0.1" style="width:250px"> 6.0 tx : <span>0.00</span> <br>
+ty -2.0 <input type="range" id="W1_ytranslate" min="-2.0" max="2.0" value="0.0" step="0.1" style="width:250px"> 2.0 ty : <span>0.00</span> <br>
+tz -2.0 <input type="range" id="W1_ztranslate" min="-2.0" max="2.0" value="0.0" step="0.1" style="width:250px"> 2.0 tz : <span>0.00</span><br>
+<button id="W1_reset">Reset</button><br>
+<p>Limiting the translation values between -2 to +2 on the Y and Z axes
+keep the model inside the WebGL viewing area. Experiment with the larger
+X axis translation values which make the model disappear from view.</p>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../../lib/learn_webgl_02.js"></script>
+<script src="../../lib/learn_webgl_console_messages.js"></script>
+<script src="../../lib/learn_webgl_point4.js"></script>
+<script src="../../lib/learn_webgl_vector3.js"></script>
+<script src="../../lib/learn_webgl_matrix.js"></script>
+<script src="../../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../../lib/learn_webgl_model_render_05.js"></script>
+<script src="./translate_render.js"></script>
+<script src="./translate_events.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var shaders = ["../../lib/shaders/shader05.vert", "../../lib/shaders/shader05.frag"];
+  var models = ["../../lib/models/XYZ_Blocks.obj", "../../lib/models/Axes3.obj"];
+  var controls = ["W1_animate", "W1_reset", "W1_xtranslate", "W1_ytranslate", "W1_ztranslate"];
+  var my_program = new Learn_webgl("W1_canvas", "ScaleTranslateRender", models, shaders, controls);
+</script>
+
+</body>
+</html>
