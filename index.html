@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Learn WebGL &mdash; LearnWebGL</title>
+
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/webglcode.css" type="text/css" />
+    <link rel="stylesheet" href="_static/webglcodedemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/assess.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="_static/lib/lis.js"></script>
+    <script type="text/javascript" src="_static/parsons.js"></script>
+    <script type="text/javascript" src="_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/webglcode.js"></script>
+    <script type="text/javascript" src="_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="_static/Blob.js"></script>
+    <script type="text/javascript" src="_static/matrixeq.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="LearnWebGL" href="#" />
+    <link rel="next" title="1.1 - Introduction" href="the_big_picture/introduction.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'LearnWebGL';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="#">Learn WebGL</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+
+                <li><a href='#'>Table of Contents</a></li>
+
+            <!-- <li><a href='/runestone/static/LearnWebGL/genindex.html'>Book Index</a></li> -->
+            <li><a href='genindex.html'>Book Index</a></li>
+            <!--
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            -->
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> -- correct link populated by addNavbarLoginLink()
+          </ul>
+        </li>
+        -->
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <!--
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/LearnWebGL/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        -->
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Learn WebGL</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a><ul>
+<li><a class="reference internal" href="#section-1-the-big-picture">SECTION 1: The Big Picture</a></li>
+<li><a class="reference internal" href="#section-2-tools-and-languages">SECTION 2: Tools and Languages</a></li>
+<li><a class="reference internal" href="#section-3-model-data">SECTION 3: Model Data</a></li>
+<li><a class="reference internal" href="#section-4-modeling">SECTION 4: Modeling</a></li>
+<li><a class="reference internal" href="#section-5-rendering-basics">SECTION 5: Rendering Basics</a></li>
+<li><a class="reference internal" href="#section-6-model-transformations">SECTION 6: Model Transformations</a></li>
+<li><a class="reference internal" href="#section-7-cameras">SECTION 7: Cameras</a></li>
+<li><a class="reference internal" href="#section-8-projections-and-viewports">SECTION 8: Projections and Viewports</a></li>
+<li><a class="reference internal" href="#section-9-lights">SECTION 9: Lights</a></li>
+<li><a class="reference internal" href="#section-10-surface-properties">SECTION 10: Surface Properties</a></li>
+<li><a class="reference internal" href="#section-11-advanced-rendering-and-transparency">SECTION 11: Advanced Rendering and Transparency</a></li>
+<li><a class="reference internal" href="#section-12-shader-language">SECTION 12: Shader Language</a></li>
+<li><a class="reference internal" href="#appendices">Appendices</a></li>
+<li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+
+
+
+  <li id="relations-next" title='Next Chapter - 1.1 - Introduction' data-toggle="tooltip" >
+    <a href="the_big_picture/introduction.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+
+          <li></li>
+
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+
+  <div class="section" id="learn-webgl">
+<span id="t-o-c"></span><h1>Learn WebGL<a class="headerlink" href="#learn-webgl" title="Permalink to this headline">¶</a></h1>
+<p>The traditional approach to learning a subject is to divide the topic into
+sub-topics, study each sub-topic, and then
+show how the sub-topics relate to each other. That is <strong>not</strong> the
+approach for these tutorials. These tutorials start with the &#8220;big picture&#8221;
+and then study the details of each sub-system that composes the complex
+overall system. The study of each sub-system starts
+from basic principles and tries to avoid any assumptions about what
+the student knows or does not know.</p>
+<p>Why learn WebGL? Very simply, it is the only cross platform solution
+for producing real-time, 3D computer graphics we have.</p>
+<ul class="simple">
+<li>You could learn <strong>Direct3D</strong>, which is a proprietary system made by Microsoft,
+but you would be restricted to running your software on a Microsoft based computer.</li>
+<li>You could learn OpenGL, which is cross platform, but OpenGL does not have a
+definitive way to interface to an operating system&#8217;s user interface.</li>
+</ul>
+<p>WebGL is an offspring of OpenGL that executes in all modern web browsers,
+including web browsers on tablets and phones. Therefore, when you learn WebGL,
+you are learning OpenGL for an environment that basically will execute on
+all modern computing devices. That is really cool!!!</p>
+<p>These tutorials are designed to be studied in sequence because they build
+on each other.</p>
+<ul class="simple">
+<li>We start with the &#8220;big picture&#8221; to show the critical sub-systems of any
+WebGL web page.</li>
+<li>Then we isolate the details in an individual sub-system and attempt to make
+sense of why it is designed like it is and how it works.</li>
+</ul>
+<p>Note: WebGL requires programming and you
+are encouraged to experiment with sample code at each stage of your learning.
+Good programming practices use an incremental development cycle.
+You start development with a simple working program and use a
+simple cycle of implement/test, implement/test, implement/test, ... until you
+reach your goal. Rarely, if ever, should you program a complex WebGL program
+&#8220;from scratch.&#8221; Always start with a working program and add complexity slowly.</p>
+<p>A critical idea for these lessons is that you <strong>MUST</strong>
+master a topic before moving to a new topic. If you are confused about
+even a small part of a topic, you will probably not understand the more
+complex topic that follow. So take your time and thoroughly master each
+topic before moving to the next topic.</p>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="section-1-the-big-picture">
+<h3>SECTION 1: The Big Picture<a class="headerlink" href="#section-1-the-big-picture" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="the_big_picture/introduction.html">1.1 - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_big_picture/3d_rendering.html">1.2 - 3D Computer Graphics - What and How</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_big_picture/webgl_history.html">1.3 - Computer Graphics - A Brief History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_big_picture/file_structure.html">1.4 - File Organization For WebGL programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_big_picture/software_structure.html">1.5 - Software Organization For WebGL programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_big_picture/coding_standards.html">1.6 - Software Coding Standards</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-2-tools-and-languages">
+<h3>SECTION 2: Tools and Languages<a class="headerlink" href="#section-2-tools-and-languages" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/install_tools.html">2.1 - Introduction to Languages and Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/html_and_css.html">2.2 - HTML and CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/javascript_language.html">2.3 - JavaScript Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/dom_and_jquery.html">2.4 - DOM and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/canvas_and_gl_context.html">2.5 - Canvas and GL Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/asynchronous_loading.html">2.6 - Asynchronous File Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/events.html">2.7 - Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser_environment/debugging.html">2.8 - Debugging</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-3-model-data">
+<h3>SECTION 3: Model Data<a class="headerlink" href="#section-3-model-data" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_introduction.html">3.1 - Introduction - Describing Virtual Worlds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_points.html">3.2 - Modeling Location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_direction.html">3.3 - Direction / Orientation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_volume.html">3.4 - Volume / Surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_material_properties.html">3.5 - Material Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_color.html">3.6 - Color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_texture_maps.html">3.7 - Texture Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_light_reflection.html">3.8 - Light Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_surface_normals.html">3.9 - Surface Normals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_data/model_lines.html">3.10 - Lines</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-4-modeling">
+<h3>SECTION 4: Modeling<a class="headerlink" href="#section-4-modeling" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modelers/modelers.html">4.1 - 3D Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelers/blender.html">4.2 - Blender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelers/obj_data_format.html">4.3 - OBJ Data Format</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-5-rendering-basics">
+<h3>SECTION 5: Rendering Basics<a class="headerlink" href="#section-5-rendering-basics" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rendering/introduction.html">5.1 - Introduction to Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/shader_primer.html">5.2 - A Primer on Shaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/buffer_object_primer.html">5.3 - A Primer on Buffer Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/simple_model.html">5.4 - A Simple Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/render_example_01.html">5.5 - Example 1: One Color per Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/render_example_02.html">5.6 - Example 2: One Color per Triangle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/render_example_03.html">5.7 - Example 3: One Color per Vertex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/render_example_04_textures.html">5.8 - Example 4: Textures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/interleaved_buffers.html">5.9 - Interleaved Buffers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/obj_to_buffers.html">5.10 - Converting OBJ Model Data to Buffer Objects</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-6-model-transformations">
+<h3>SECTION 6: Model Transformations<a class="headerlink" href="#section-6-model-transformations" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_introduction.html">6.1 - Introduction to Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_scale.html">6.2 - Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_translate.html">6.3 - Translating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_rotate.html">6.4 - Rotating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_matrices.html">6.5 - Transformation Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/matrix_library_introduction.html">6.6 - A Matrix Code Library - <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt></a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_example1.html">6.7 - Using <tt class="code docutils literal"><span class="pre">Learn_webgl_matrix</span></tt> - A Robot Arm Base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_example2.html">6.8 - Chaining Transformations - Adding a Forearm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_example3.html">6.9 - Chaining Transformations - Adding an Upper Arm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformations_example4.html">6.10 - Chaining Transformations (Summary)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/more_matrix_math_concepts.html">6.11 - More Matrix Math Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations2/transformation_coding_issues.html">6.12 - Coding Issues</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-7-cameras">
+<h3>SECTION 7: Cameras<a class="headerlink" href="#section-7-cameras" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/camera_introduction.html">7.1 - Introduction to Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/camera_math.html">7.2 - Camera Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/camera_movement.html">7.3 - Camera Movement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/camera_linear_motion.html">7.4 - Moving a Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/camera_rotating_motion.html">7.5 - Rotating a Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/points_along_a_path.html">7.6 - Points Along A Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/timing_along_a_path.html">7.7 - Timing Along A Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_cameras/screen_updates_and_animation.html">7.8 - Screen Updates and Animation</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-8-projections-and-viewports">
+<h3>SECTION 8: Projections and Viewports<a class="headerlink" href="#section-8-projections-and-viewports" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="08_projections/projections_introduction.html">8.1 - Introduction to Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_projections/projections_ortho.html">8.2 - Orthographic Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_projections/projections_perspective.html">8.3 - Perspective Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_projections/projections_viewport.html">8.4 - Viewports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_projections/projections_summary.html">8.5 - Summary of Projections and Viewports</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-9-lights">
+<h3>SECTION 9: Lights<a class="headerlink" href="#section-9-lights" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_introduction.html">9.1 - Introduction to Lighting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_diffuse.html">9.2 - Diffuse Lighting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_specular.html">9.3 - Specular Lighting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_ambient.html">9.4 - Ambient Lighting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_combined.html">9.5 - Combining Ambient, Diffuse, and Specular Lighting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/fragment_shader_debugging.html">9.6 - Fragment Shader Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_attenuation.html">9.7 - Light Attenuation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_lights/lights_other_models.html">9.8 - Types of Light Sources</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-10-surface-properties">
+<h3>SECTION 10: Surface Properties<a class="headerlink" href="#section-10-surface-properties" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/surface_properties_introduction.html">10.1 - Introduction to Surface Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/surface_properties_color.html">10.2 - Surface Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/smooth_vertex_normals.html">10.3 - Smooth &#8220;Phong&#8221; Shading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/texture_mapping_images.html">10.4 - Texture Mapping Using Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/texture_mapping_coordinates.html">10.5 - Texture Mapping - Texture Coordinates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/texture_mapping_procedural.html">10.6 - Texture Mapping Using Procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/texture_mapping_procedural2.html">10.7 - Texture Mapping Using Procedures - Continued</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/texture_mapping_transforms.html">10.8 - Transformations on Texture Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/other_surface_manipulators.html">10.9 - Other Surface Manipulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_surface_properties/combining_light_and_surface_properties.html">10.10 - Combining Light and Surface Properties</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-11-advanced-rendering-and-transparency">
+<h3>SECTION 11: Advanced Rendering and Transparency<a class="headerlink" href="#section-11-advanced-rendering-and-transparency" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/introduction.html">11.1 - Introduction to Advanced Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/hidden_surface_removal.html">11.2 - Hidden Surface Removal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/selecting_objects.html">11.3 - Selecting Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/alpha_blending.html">11.4 - Transparency (and Alpha Blending)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/shadows.html">11.5 - Shadows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/particle_systems_temp.html">11.6 - Particle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_advanced_rendering/overlays.html">11.7 - Overlays</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-12-shader-language">
+<h3>SECTION 12: Shader Language<a class="headerlink" href="#section-12-shader-language" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="12_shader_language/glsl_introduction.html">12.1 - WebGL Shader Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_shader_language/glsl_data_types.html">12.2 - GLSL Data Types and Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_shader_language/glsl_control_structures.html">12.3 - GLSL Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_shader_language/glsl_mathematical_operations.html">12.4 - GLSL Operators (Mathematical and Logical)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_shader_language/glsl_builtin_functions.html">12.5 - GLSL Built-in Functions and Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_shader_language/glsl_compiling_and_linking.html">12.6 - GLSL Compiling and Linking</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="appendices">
+<h3>Appendices<a class="headerlink" href="#appendices" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+<div class="section" id="acknowledgements">
+<h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements/references.html">WebGL References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements/author.html">Tutorial Author</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+  <li id="relations-next" class="navLink" title='Next Section - 1.1 - Introduction' data-toggle="tooltip" >
+    <a href="the_big_picture/introduction.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="the_big_picture/introduction.html" >Next Section - 1.1 - Introduction</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+
+    </p>
+    <p>
+        &copy; Copyright &lt;2015, C. Wayne Brown&gt;.
+      Last updated on Apr 28, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    <!-- $(document).ready(createScratchActivecode()); -->
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
