@@ -1,0 +1,150 @@
+<!doctype html>
+<!-- Example LearnWebGL HTML file, by Wayne Brown, Fall 2015 -->
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <title>WebGL Example</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/webglcode.css" />
+</head>
+
+<body>
+<p>A simple, manually defined 3D model. You can spin the model with your mouse.</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="gl_canvas" width="640" height="480">>
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<script>
+    function loadShader(gl, type, source) {
+        const shader = gl.createShader(type);
+
+        gl.shaderSource(shader, source);
+
+        gl.compileShader(shader);
+
+        const result = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+        if (!result) {
+            const errors = gl.getShaderInfoLog(shader);
+            console.log('Failed to compile ' + type + ' with these errors:' + errors);
+            gl.deleteShader(shader);
+
+            return null;
+        }
+
+        return shader;
+    }
+
+    function initShaderProgram (gl, vsSource, fsSource) {
+        const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
+        const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+        const shaderProgram = gl.createProgram();
+        gl.attachShader(shaderProgram, vertexShader);
+        gl.attachShader(shaderProgram, fragmentShader);
+        gl.linkProgram(shaderProgram);
+
+        const result = gl.getProgramParameter(shaderProgram, gl.LINK_STATUS);
+        if (!result) {
+            // There were errors, so get the errors and display them.
+            var error = gl.getProgramInfoLog(program);
+            console.log('Fatal error: Failed to link program: ' + error);
+
+            gl.deleteProgram(program);
+            gl.deleteShader(fragmentShader);
+            gl.deleteShader(vertexShader);
+
+            return null;
+        }
+        
+        return shaderProgram;
+    }
+
+    function initBuffers (gl) {
+        const positions = [
+            -1.0, 1.0,
+            1.0, 1.0,
+            -1.0, -1.0,
+            1.0, -1.0,
+        ];  
+        
+        const positionBuffer = gl.createBuffer();
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+        return {
+            position: positionBuffer
+        }
+    }
+
+    function drawScene (gl, programInfo, buffers) {
+        gl.clearColor(0.0, 0.0, 0.0, 1);
+        gl.clearDepth(1.0);
+        gl.enable(gl.DEPTH_TEST);
+        gl.depthFunc(gl.LEQUAL);
+
+        gl.clear(gl.COLOR_BUFFER_BIT);
+    
+    }
+</script>
+
+<script>
+        const canvas = document.getElementById("gl_canvas");
+        let gl = canvas.getContext("webgl");
+    
+        gl.clearColor(0.0, 0.0, 0.0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+    
+        const vsSource = `
+            precision mediump int;
+            precision mediump float;
+    
+            uniform   mat4 u_Transform;
+            uniform   vec4 u_Color;
+    
+            attribute vec3 a_Vertex;
+    
+            void main() {
+                // Transform the location of the vertex
+                gl_Position = u_Transform * vec4(a_Vertex, 1.0);
+            }
+        `;
+    
+        const fsSource = `
+            precision mediump int;
+            precision mediump float;
+    
+            uniform vec4 u_Color;
+    
+            void main() {
+                gl_FragColor = u_Color;
+            }
+        `;
+    
+        const shaderProgram = initShaderProgram(gl, vsSource, fsSource);
+
+        const programInfo = {
+            shaderProgram: shaderProgram,
+            attribLocations: {
+                vertexPosition: gl.getAttribLocation(shaderProgram, "a_Vertex")
+            },
+            uniformLocations: {
+                transformMatrix: gl.getUniformLocation(shaderProgram, "u_Transform"),
+                color: gl.getUniformLocation(shaderProgram, "u_Color")
+            }
+        };
+        
+        const buffers = initBuffers(gl);
+
+        console.log(buffers);
+
+
+    </script>
+
+</body>
+</html>
