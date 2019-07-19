@@ -1,13 +1,6 @@
 /**
- * learn_webgl_render_01.js, By Wayne Brown, Fall 2015
+ * TextureTransformImageRender.js, By Wayne Brown, Spring 2016
  *
- * Given
- *   - a model definition as defined in learn_webgl_model_01.js, and
- *   - specific shader programs: vShader01.vert, fShader01.frag
- * Perform the following tasks:
- *   1) Build appropriate Vertex Object Buffers (VOB's)
- *   2) Create GPU VOB's for the data and copy the data into the buffers.
- *   3) Render the VOB's
  */
 
 /**
@@ -37,47 +30,71 @@
 "use strict";
 
 // Global definitions used in this code:
-//var Float32Array, Uint16Array, parseInt, parseFloat, console;
+var console, Learn_webgl_matrix, Learn_webgl_matrix3;
 
 //-------------------------------------------------------------------------
 // Build, create, copy and render 3D objects specific to a particular
 // model definition and particular WebGL shaders.
 //-------------------------------------------------------------------------
-var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
+window.TextureTransformImageRender = function (learn, vshaders_dictionary,
                                 fshaders_dictionary, models, controls) {
 
-  var self = this;
-
   // Private variables
+  var self = this;
   var canvas_id = learn.canvas_id;
   var out = learn.out;
 
   var gl = null;
   var program = null;
+  var cube;
 
-  var matrix = new Learn_webgl_matrix();
+  var matrix = new window.Learn_webgl_matrix();
   var transform = matrix.create();
-  var projection = matrix.createOrthographic(-1,1,-1,1,-1,1);
+  var projection = matrix.createOrthographic(-2.0, 2.0, -2.0, 2.0, -4.0, 4.0);
   var rotate_x_matrix = matrix.create();
   var rotate_y_matrix = matrix.create();
-  var pyramid = null;
-  var events = null;
+
+  // Public variables that will possibly be used or changed by event handlers.
+  self.canvas = null;
+  self.angle_x = 0.0;
+  self.angle_y = 0.0;
+  self.animate_active = false;
+
+  // Texture mapping transformations
+  var mat3 = new window.Learn_webgl_matrix3();
+  self.texture_dx = 0.0;
+  self.texture_dy = 0.0;
+  self.texture_sx = 1.0;
+  self.texture_sy = 1.0;
+  self.texture_angle = 0.0;
+  var texture_transform = mat3.create();
+  var texture_translate = mat3.create();
+  var texture_scale = mat3.create();
+  var texture_rotate = mat3.create();
 
   //-----------------------------------------------------------------------
   self.render = function () {
 
     // Clear the entire canvas window background with the clear color
+    // out.display_info("Clearing the screen");
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // Build individual transforms
+    matrix.setIdentity(transform);
     matrix.rotate(rotate_x_matrix, self.angle_x, 1, 0, 0);
     matrix.rotate(rotate_y_matrix, self.angle_y, 0, 1, 0);
 
     // Combine the transforms into a single transformation
-    matrix.multiply(transform, projection, rotate_x_matrix, rotate_y_matrix);
+    matrix.multiplySeries(transform, projection, rotate_x_matrix, rotate_y_matrix);
 
-    // Render the model
-    pyramid.render(gl, transform);
+    // Create the texture transform
+    mat3.translate(texture_translate, self.texture_dx, self.texture_dy);
+    mat3.rotate(texture_rotate, self.texture_angle);
+    mat3.scale(texture_scale, self.texture_sx, self.texture_sy);
+    mat3.multiplySeries(texture_transform, texture_translate, texture_rotate, texture_scale);
+
+    // Draw each model
+    cube.render(transform, texture_transform);
   };
 
   //-----------------------------------------------------------------------
@@ -87,11 +104,16 @@ var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
     gl.deleteShader(program.vShader);
     gl.deleteShader(program.fShader);
     gl.deleteProgram(program);
+    program = null;
 
     // Delete each model's VOB
-    pyramid.delete(gl);
+    cube.delete(gl);
 
     // Remove all event handlers
+    var id = '#' + canvas_id;
+    $( id ).unbind( "mousedown", events.mouse_drag_started );
+    $( id ).unbind( "mouseup", events.mouse_drag_ended );
+    $( id ).unbind( "mousemove", events.mouse_dragged );
     events.removeAllEventHandlers();
 
     // Disable any animation
@@ -101,37 +123,33 @@ var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
   //-----------------------------------------------------------------------
   // Object constructor. One-time initialization of the scene.
 
-  // Public variables that will possibly be used or changed by event handlers.
-  self.canvas = null;
-  self.angle_x = 0.0;
-  self.angle_y = 0.0;
-  self.animate_active = true;
-
   // Get the rendering context for the canvas
   self.canvas = learn.getCanvas(canvas_id);
   if (self.canvas) {
     gl = learn.getWebglContext(self.canvas);
   }
   if (!gl) {
-    return null;
+    return;
   }
 
   // Set up the rendering program and set the state of webgl
-  program = learn.createProgram(gl, vshaders_dictionary["shader01"], fshaders_dictionary["shader01"]);
+  program = learn.createProgram(gl, vshaders_dictionary.shader37, fshaders_dictionary.shader30);
 
   gl.useProgram(program);
 
   gl.enable(gl.DEPTH_TEST);
 
-  // Create a simple model of a pyramid
-  var pyramid_model = CreatePyramid();
-  var pyramid_color = new Float32Array([1.0, 0.0, 0.0, 1.0]);
-
-  // Create Buffer Objects for the model
-  pyramid = new SimpleModelRender_01(gl, program, pyramid_model, pyramid_color, out);
+  // Create Vertex Object Buffers for the models
+  cube = new Learn_webgl_model_render_37(gl, program, models.cube, out);
 
   // Set up callbacks for user and timer events
-  events = new SimpleEvents_01(self, controls, canvas_id);
+  var events;
+  events = new TextureTransformImageEvents(self, controls);
   events.animate();
+
+  var id = '#' + canvas_id;
+  $( id ).mousedown( events.mouse_drag_started );
+  $( id ).mouseup( events.mouse_drag_ended );
+  $( id ).mousemove( events.mouse_dragged );
 };
 

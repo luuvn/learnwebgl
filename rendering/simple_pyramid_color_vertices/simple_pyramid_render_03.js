@@ -43,7 +43,7 @@
 // Build, create, copy and render 3D objects specific to a particular
 // model definition and particular WebGL shaders.
 //-------------------------------------------------------------------------
-var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
+window.SceneSimplePyramidRender3 = function (learn, vshaders_dictionary,
                                 fshaders_dictionary, models, controls) {
 
   var self = this;
@@ -57,11 +57,9 @@ var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
 
   var matrix = new Learn_webgl_matrix();
   var transform = matrix.create();
-  var projection = matrix.createOrthographic(-1,1,-1,1,-1,1);
   var rotate_x_matrix = matrix.create();
   var rotate_y_matrix = matrix.create();
   var pyramid = null;
-  var events = null;
 
   //-----------------------------------------------------------------------
   self.render = function () {
@@ -70,11 +68,12 @@ var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // Build individual transforms
+    matrix.setIdentity(transform);
     matrix.rotate(rotate_x_matrix, self.angle_x, 1, 0, 0);
     matrix.rotate(rotate_y_matrix, self.angle_y, 0, 1, 0);
 
     // Combine the transforms into a single transformation
-    matrix.multiply(transform, projection, rotate_x_matrix, rotate_y_matrix);
+    matrix.multiplySeries(transform, transform, rotate_x_matrix, rotate_y_matrix);
 
     // Render the model
     pyramid.render(gl, transform);
@@ -92,6 +91,10 @@ var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
     pyramid.delete(gl);
 
     // Remove all event handlers
+    var id = '#' + canvas_id;
+    $( id ).unbind( "mousedown", events.mouse_drag_started );
+    $( id ).unbind( "mouseup", events.mouse_drag_ended );
+    $( id ).unbind( "mousemove", events.mouse_dragged );
     events.removeAllEventHandlers();
 
     // Disable any animation
@@ -117,21 +120,21 @@ var SceneSimplePyramidRender = function (learn, vshaders_dictionary,
   }
 
   // Set up the rendering program and set the state of webgl
-  program = learn.createProgram(gl, vshaders_dictionary["shader01"], fshaders_dictionary["shader01"]);
+  program = learn.createProgram(gl, vshaders_dictionary["shader02"], fshaders_dictionary["shader02"]);
 
   gl.useProgram(program);
 
   gl.enable(gl.DEPTH_TEST);
 
   // Create a simple model of a pyramid
-  var pyramid_model = CreatePyramid();
-  var pyramid_color = new Float32Array([1.0, 0.0, 0.0, 1.0]);
+  var pyramid_model = CreatePyramid3();
 
   // Create Buffer Objects for the model
-  pyramid = new SimpleModelRender_01(gl, program, pyramid_model, pyramid_color, out);
+  pyramid = new SimpleModelRender_03(gl, program, pyramid_model, out);
 
   // Set up callbacks for user and timer events
-  events = new SimpleEvents_01(self, controls, canvas_id);
+  var events;
+  events = new SimpleEvents_03(self, controls, canvas_id);
   events.animate();
 };
 

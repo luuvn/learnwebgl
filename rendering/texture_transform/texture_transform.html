@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- Example LearnWebGL HTML file, by Wayne Brown, Fall 2015 -->
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="Learn, WebGL, tutorial, example">
+  <meta name="description" content="WebGL tutorials - texture transforms example">
+  <meta name="author" content="Wayne Brown">
+  <title>WebGL Example</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/webglcode.css" />
+</head>
+
+<body>
+<p>An example of transforming texture coordinates to make a texture map "move."</p>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W1_canvas" class="canvas3D">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+<table>
+  <tr>
+    <td id="translate_text" style="text-align:center">Translate texture: (0.00, 0.00)</td>
+    <td id="scale_text" style="text-align:center">Scale texture: (1.0,1.0)</td>
+    <td id="rotate_text" style="text-align:center">Rotate texture: 0.0 degrees</td>
+  </tr>
+  <tr>
+    <td>TX: -2.0 <input type="range" id="W1_dx" min="-2.0" max="2.0" value="0.0" step="0.01" style="width:150px"> +2.0</td>
+    <td>SX: -5.0 <input type="range" id="W1_sx" min="-5.0" max="5.0" value="1.0" step="0.01" style="width:150px"> +5.0</td>
+    <td>Angle: -180.0 <input type="range" id="W1_angle" min="-180.0" max="180.0" value="0.0" step="0.1" style="width:150px"> +180.0</td>
+  </tr>
+  <tr>
+    <td>TY: -2.0 <input type="range" id="W1_dy" min="-2.0" max="2.0" value="0.0" step="0.01" style="width:150px"> +2.0</td>
+    <td>SY: -5.0 <input type="range" id="W1_sy" min="-5.0" max="5.0" value="1.0" step="0.01" style="width:150px"> +5.0</td>
+    <td></td>
+  </tr>
+</table>
+
+<!-- An HTML control element that can be used to modify the rendering behavior -->
+<input type="checkbox" id="W1_animate_texture"> Animate Texture<br>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../../lib/learn_webgl_02.js"></script>
+<script src="../../lib/learn_webgl_console_messages.js"></script>
+<script src="../../lib/learn_webgl_point4.js"></script>
+<script src="../../lib/learn_webgl_vector3.js"></script>
+<script src="../../lib/learn_webgl_matrix.js"></script>
+<script src="../../lib/learn_webgl_matrix3.js"></script>
+<script src="../../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../../lib/learn_webgl_model_render_37.js"></script>
+<script src="./texture_transform_render.js"></script>
+<script src="./texture_transform_events.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var models = ["../../lib/models/textured_cube_water.obj"];
+  var shaders = ["../../lib/shaders/shader37.vert", "../../lib/shaders/shader30.frag"];
+  var controls = ["W1_dx", "W1_dy", "W1_sx", "W1_sy", "W1_angle", "W1_animate_texture"];
+  var my_program = new Learn_webgl("W1_canvas", "TextureTransformImageRender", models, shaders, controls);
+</script>
+
+</body>
+</html>

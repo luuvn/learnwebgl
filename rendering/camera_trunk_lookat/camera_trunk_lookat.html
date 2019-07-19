@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Example LearnWebGL HTML file, by Wayne Brown, Fall 2015 -->
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="Learn, WebGL, tutorial, camera lookat">
+  <meta name="description" content="WebGL tutorials - camera trunk using lookat">
+  <meta name="author" content="Wayne Brown">
+  <title>WebGL Example</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/webglcode.css" />
+</head>
+
+<body>
+<p>To investigate camera <strong>trucking</strong> motion:
+  <ul>
+    <li>Manipulate the parameters of a <strong>lookAt()</strong> created virtual camera to position and orient a camera.</li>
+    <li>Push the <strong>truck</strong> button below to "truck" from the camera's current position and orientation.</li>
+  </ul>
+</p>
+The left canvas shows the relative location of the scene objects and the camera. The right
+canvas shows the scene from the camera's vantage point.<br>
+
+<!--The canvas window for rendering 3D graphics -->
+<canvas id="W1_canvas" class="canvas3D" style="width:400px; height:400px">
+  Please use a browser that supports "canvas"
+</canvas>
+<canvas id="W1_canvas_b" class="canvas3D" style="width:200px; height:200px">
+  Please use a browser that supports "canvas"
+</canvas>
+<br>
+
+Manipulate the function <strong>lookAt(M, eye_x, eye_y, eye_z,
+  center_x, center_y, center_z, up_dx, up_dy, up_dz)</strong><br>
+<br>
+<table>
+  <tr>
+    <td style="text-align:center"><span id="W1_eye_text"><strong>eye (0.0, 0.0, 5.0)</strong></span></td>
+    <td style="text-align:center"><span id="W1_center_text"><strong>center (0.0, 0.0, 0.0)</strong></span></td>
+    <td style="text-align:center"><span id="W1_up_text"><strong>up &lt;0.0, 1.0, 0.0&gt;</strong></span></td>
+  </tr>
+  <tr>
+    <td>X: -5.0 <input type="range" id="W1_eyeX" min="-5.0" max="5.0" value="0.0" step="0.1" style="width:150px"> +5.0</td>
+    <td>X: -5.0 <input type="range" id="W1_cX" min="-5.0" max="5.0" value="0.0" step="0.1" style="width:150px"> +5.0</td>
+    <td>X: -1.0 <input type="range" id="W1_upX" min="-1.0" max="1.0" value="0.0" step="0.01" style="width:150px"> +1.0</td>
+  </tr>
+
+  <tr>
+    <td>Y: -5.0 <input type="range" id="W1_eyeY" min="-5.0" max="5.0" value="0.0" step="0.1" style="width:150px"> +5.0</td>
+    <td>Y: -5.0 <input type="range" id="W1_cY" min="-5.0" max="5.0" value="0.0" step="0.1" style="width:150px"> +5.0</td>
+    <td>Y: -1.0 <input type="range" id="W1_upY" min="-1.0" max="1.0" value="1.0" step="0.01" style="width:150px"> +1.0</td>
+  </tr>
+
+  <tr>
+    <td>Z: -5.0 <input type="range" id="W1_eyeZ" min="-5.0" max="5.0" value="5.0" step="0.1" style="width:150px"> +5.0</td>
+    <td>Z: -5.0 <input type="range" id="W1_cZ" min="-5.0" max="5.0" value="0.0" step="0.1" style="width:150px"> +5.0</td>
+    <td>Z: -1.0 <input type="range" id="W1_upZ" min="-1.0" max="1.0" value="0.0" step="0.01" style="width:150px"> +1.0</td>
+  </tr>
+
+</table>
+<p>Each click of the <strong>truck</strong> button moves by 0.1 units along the <strong>u</strong> axis.</p>
+<button id="W1_trunk_left">Truck Left</button>&nbsp &nbsp <button id="W1_trunk_right">Truck Right</button><br><br>
+<button id="W1_reset">Reset camera</button><br>
+
+<!-- Load the JavaScript libraries and data files for the WebGL rendering -->
+<script src="../../lib/learn_webgl_02.js"></script>
+<script src="../../lib/learn_webgl_console_messages.js"></script>
+<script src="../../lib/learn_webgl_point3.js"></script>
+<script src="../../lib/learn_webgl_point4.js"></script>
+<script src="../../lib/learn_webgl_vector3.js"></script>
+<script src="../../lib/learn_webgl_matrix.js"></script>
+<script src="../../lib/learn_webgl_obj_to_arrays.js"></script>
+<script src="../../lib/learn_webgl_model_render_05.js"></script>
+<script src="./learn_webgl_ray_model.js"></script>
+<script src="./lookat_camera.js"></script>
+<script src="./camera_trunk_lookat_render.js"></script>
+<script src="./camera_trunk_lookat_events.js"></script>
+
+<!--
+  Create an instance of the learn_webgl class, and start the WebGL program.
+  We do this here to pass the canvas ID into the javascript code.
+-->
+<script>
+  var shaders = ["../../lib/shaders/shader05.vert",
+                 "../../lib/shaders/shader05.frag",
+                 "../../lib/shaders/shader01a.vert",
+                 "../../lib/shaders/shader01.frag"];
+  var models = ["../../lib/models/XYZ_Blocks.obj",
+                "../../lib/models/camera.obj",
+                "../../lib/models/Axes2Units.obj",
+                "../../lib/models/sphere.obj"];
+  var controls = ["W1_eyeX", "W1_eyeY", "W1_eyeZ", "W1_cX", "W1_cY", "W1_cZ",
+                  "W1_upX", "W1_upY", "W1_upZ", "W1_trunk_left", "W1_trunk_right", "W1_reset"];
+  var my_program = new Learn_webgl("W1_canvas", "SceneTruckLookatRender", models, shaders, controls);
+</script>
+
+</body>
+</html>
